@@ -1,3 +1,5 @@
+package Baitap01;
+
 import java.sql.SQLOutput;
 public class Khaibaosudungbien {
     public static void main(String[] args) {

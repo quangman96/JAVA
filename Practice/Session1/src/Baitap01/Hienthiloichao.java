@@ -1,3 +1,5 @@
+package Baitap01;
+
 import java.util.Scanner;
 public class Hienthiloichao {
     public static void main(String[] args) {

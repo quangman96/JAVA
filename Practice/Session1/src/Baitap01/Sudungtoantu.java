@@ -1,3 +1,5 @@
+package Baitap01;
+
 import java.util.Scanner;
 public class Sudungtoantu {
     public static void main(String[] args) {

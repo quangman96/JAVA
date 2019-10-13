@@ -118,5 +118,21 @@ public class Function {
         }
         return max;
     }
+    public static int tongCheoChinh(int[][]arr,int kt) {
+        int sum = 0;
+        for (int i = 0; i < kt; i++) {
+            sum += arr[i][i];
+        }
+        return sum;
+    }
+    public static int demKtChuoi(String str, char c) {
+        int count = 0;
+        for (int i = 0; i <str.length() ; i++) {
+            if(str.charAt(i)==c){
+                count ++;
+            }
+        }
+        return count;
+    }
 }
 

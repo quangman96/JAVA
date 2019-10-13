@@ -90,7 +90,7 @@ public class Function {
         }
         return array;
     }
-    public static int[][] mang2chieu(int height, int width) {
+    public static int[][] mang2chieu(int width, int height) {
         int[][] arr = new int[width][height];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -107,6 +107,13 @@ public class Function {
             }
             System.out.println(" ");
         }
+    }
+    public static int tongCot(int [][]arr,int num,int height) {
+        int sum = 0;
+        for (int i = 0; i < height; i++) {
+            sum += arr[i][num];
+        }
+        return sum;
     }
     public static int max2chieu(int [][]arr){
         int max = arr[0][0];

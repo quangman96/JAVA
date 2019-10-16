@@ -1,25 +1,52 @@
 package oop;
 
-public class Rectangle {
-    double width, height;
+public class Rectangle extends Shape {
+    private double width = 1.0;
+    private double length = 1.0;
 
     public Rectangle() {
 
     }
+
     public Rectangle(double width,double height) {
     this.width = width;
-    this.height = height;
+    this.length = height;
+    }
+
+    public Rectangle(double width,double length,String color,boolean filled) {
+        super(color, filled);
+        this.width = width;
+        this.length = length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
     }
 
     public double getArea() {
-        return this.width * this.height;
+        return this.width * this.length;
     }
 
     public double getPerimeter() {
-        return (this.width+this.height) *2;
+        return (this.width+this.length) *2;
     }
-    public String display() {
-        return "Rectangle{"+ "width= "+ width + ", height= "+ height + "}";
+    @Override
+    public String toString() {
+        return "A rectangle with width: "+ getWidth()+
+                "and length: "+ getLength() +" which is a subclass of: "
+                +super.toString();
     }
 
 }

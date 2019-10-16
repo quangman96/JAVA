@@ -72,8 +72,8 @@ public class Function {
         int[] array = new int[arr.length + 1];
         for (int i = 0; i < index; i++) {
             array[i] = arr[i];
-            array[index] = num;
         }
+        array[index] = num;
         for (int i = index + 1; i < arr.length+1; i++) {
             array[i] = arr[i - 1];
         }

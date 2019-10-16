@@ -12,7 +12,7 @@ public class Hinhchunhat {
 
         Rectangle hcn = new Rectangle(width,height);
 
-        System.out.println("Your rectangle \n"+ hcn.display());
+//        System.out.println("Your rectangle \n"+ hcn.display());
         System.out.println("Perimeter is: "+ hcn.getPerimeter());
         System.out.println("Area is: "+ hcn.getArea());
 

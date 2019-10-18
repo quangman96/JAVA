@@ -1,4 +1,4 @@
-package oop;
+package oop.kethua;
 
 public class Fan {
     public static final int slow = 1;

@@ -1,4 +1,4 @@
-package oop;
+package oop.kethua;
 
 public class Rectangle extends Shape {
     private double width = 1.0;

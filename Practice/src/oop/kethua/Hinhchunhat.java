@@ -1,4 +1,4 @@
-package oop;
+package oop.kethua;
 
 import java.util.Scanner;
 

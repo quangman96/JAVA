@@ -1,4 +1,4 @@
-package oop;
+package oop.kethua;
 
 public class Circle extends Shape {
     private double radius = 1.0;

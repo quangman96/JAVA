@@ -1,8 +1,10 @@
 package oop.point;
 
+import java.util.Arrays;
+
 public class Point3D extends Point2D {
     private float z = 0.0f;
-    private float[]array = new float[3];
+//    private float[]array = new float[3];
 
     public Point3D() {
     }
@@ -21,13 +23,14 @@ public class Point3D extends Point2D {
     }
 
     public void setXYZ(float x, float y, float z) {
-        array[0] = x;
-        array[1] = y;
-        array[2] = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public float[] getXYZ() {
-        return array;
+        float[]arr = new float[]{this.x,this.y,this.z};
+        return arr;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Point3D extends Point2D {
         return "Point 3D with x = "+getX()+
                 " with y = "+getY()+
                 " with z = "+getZ()+
-        " have array is: "+getXYZ()
-                +super.toString();
+        " have array is: "
+                + Arrays.toString(getXYZ());
     }
 }

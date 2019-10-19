@@ -1,24 +1,22 @@
-package oop.point;
+package oop.moveablepoint;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Point2D {
-    public float x = 0.0f;
-    public float y = 0.0f;
-//    private float[]arr = new float[2];
+public class Point {
+    private float x = 0.0f;
+    private float y = 0.0f;
 
-    public Point2D() {
+    public Point() {
     }
 
-    public Point2D(float x, float y) {
+    public Point(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
     public float getX() {
-    return x;
-}
+        return x;
+    }
 
     public void setX(float x) {
         this.x = x;
@@ -50,3 +48,4 @@ public class Point2D {
                 "with y = "+getY()+ " have arr is: "+ Arrays.toString(getXY());
     }
 }
+

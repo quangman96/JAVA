@@ -1,4 +1,4 @@
-package oop.hinhhoc;
+package oop.baitap.hinhhoc;
 
 public class Circle {
     private double radius = 0;
@@ -19,7 +19,7 @@ public class Circle {
         return  this.getRadius() * Math.PI;
     }
 
-    public String draw(){
-        return "Đây là hình tròn.";
+    public void draw(){
+        System.out.println("This is Circle");
     }
 }

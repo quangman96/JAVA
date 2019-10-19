@@ -1,4 +1,4 @@
-package oop.hinhhoc;
+package oop.baitap.hinhhoc;
 
 public class Square {
     double side = 0;
@@ -19,12 +19,7 @@ public class Square {
         return Math.pow(this.side, 2);
     }
     public void draw(){
-        for (int i = 0; i < side; i++) {
-            for (int j = 0; j < side; j++) {
-                System.out.print("*");
-            }
-            System.out.print("\n");
-        }
+        System.out.println("This is Square");
     }
 
 }

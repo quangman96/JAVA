@@ -1,4 +1,4 @@
-package oop.hinhhoc;
+package oop.baitap.hinhhoc;
 
 public class Rengtangle {
     private double width = 0;
@@ -29,11 +29,6 @@ public class Rengtangle {
         return this.height * this.width;
     }
     public void draw() {
-        for (int i = 0; i < height ; i++) {
-            for (int j = 0; j<width; j++){
-                System.out.print("*");
-            }
-            System.out.print("\n");
-        }
+        System.out.println("This is Rectangle");
     }
 }

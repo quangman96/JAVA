@@ -1,6 +1,6 @@
 package oop.baitap2;
 
-public class Pet implements ISpeaking {
+public abstract class Pet implements ISpeaking {
     private String name;
 
     public Pet (){
@@ -15,11 +15,11 @@ public class Pet implements ISpeaking {
     }
 
     @Override
-    public void howToSpeak() {
+    public void speak() {
     }
 
     public String toString() {
-        return "This is pet with name: "+this.name;
+        return "This pet with name is: "+this.name;
     }
 
 }

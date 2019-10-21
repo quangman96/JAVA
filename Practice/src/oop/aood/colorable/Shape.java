@@ -1,4 +1,4 @@
-package oop.kethua;
+package oop.aood.colorable;
 
 public class Shape {
 

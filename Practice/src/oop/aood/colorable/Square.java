@@ -1,6 +1,6 @@
-package oop.kethua;
+package oop.aood.colorable;
 
-public class Square extends Shape implements Colorable{
+public class Square extends Shape implements Colorable {
     double side = 0;
     public Square(){}
     public  Square(double side) {

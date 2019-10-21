@@ -12,7 +12,7 @@ public class Dog extends Pet implements ILicensable{
 
 
     @Override
-    public void howToSpeak() {
+    public void speak() {
         System.out.println("Gau gau!!!");
     }
 

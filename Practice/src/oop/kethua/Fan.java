@@ -13,7 +13,6 @@ public class Fan {
     public Fan(){
     }
 
-
     public static int getMedium() {
         return medium;
     }

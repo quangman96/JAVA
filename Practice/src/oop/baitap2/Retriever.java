@@ -11,11 +11,11 @@ public class Retriever extends Dog {
     }
 
     @Override
-    public void howToSpeak() {
+    public void speak() {
         System.out.println("Goam goam!!");
     }
 
-    public Bird retrieve(){
-        return null;
+    public void retrieve(Bird bird){
+        System.out.println(this.getName()+" an thit "+ bird.getName());
     }
 }

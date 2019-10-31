@@ -141,5 +141,43 @@ public class Function {
         }
         return count;
     }
+
+    public static int[] sortASC(int[]arr) {
+        int temp = arr[0];
+        for (int i = 0; i < arr.length-1 ; i++) {
+            for (int j = i+1; j <arr.length ; j++) {
+                if (arr[i]>arr[j]) {
+                    temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+//        for (int value : arr) {
+//            System.out.print(value + " ");
+//        }
+        return arr;
+    }
+    public static boolean tuyenTinh(int[]arr,int num){
+        for (int i = 0; i <arr.length ; i++) {
+            if (arr[i] == num) return true;
+        }
+            return false;
+    }
+
+    public static boolean nhiPhan(int[]arr,int num){
+        int left = 0;
+        int right = arr.length-1;
+        while(left <= right){
+            int mid = (left+right)/2;
+            if(arr[mid]== num) return true;
+            else if (arr[mid] < num){
+                left = mid+1;
+            } else {
+                right = mid-1;
+            }
+        }
+        return false;
+    }
 }
 

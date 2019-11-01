@@ -6,6 +6,7 @@ package dulieugiaithuat;
 
 public class MyLinkedList<E> {
     private Node head;
+    private Node tail;
     private int numNodes;
 
     public MyLinkedList() {
@@ -41,17 +42,48 @@ public class MyLinkedList<E> {
     public void addLast(E e) {
         Node newNode = new Node(e);
         Node get = this.head;
-        while (get.getNext() == null) {
+        if (get.getNext() == null) {
             get = get.getNext();
         }
         get.setNext(newNode);
         ensureCapacity(1);
     }
+//        if((index<0) || (index >=numNodes)) return null;
+//        else if(index == 0) {
+////            Node first = this.head;
+//            Node temp = this.head;
+//            head = head.getNext();
+//            ensureCapacity(-1);
+//            return (E) temp;
+//        }
+////        last
+//        else if (index == numNodes-1){
+//            Node current = head;
+//            for (int i = 0; i < numNodes-2; i++) {
+//                current = current.getNext();
+//            }
+//            Node temp1 = tail;
+//            tail = current;
+////            tail.setNext(tail.getNext()) = null;
+//            ensureCapacity(-1);
+//            return (E) temp1;
+//        }
+    public E remove(int index){
+        if ((index>=0) && (index<numNodes)){
+            int count = 0;
+            Node get = this.head;
+            while (count<index){
+                count ++;
+                get = get.getNext();
+            }
+            Node nodeRemove = get.getNext();
+            get.setNext(nodeRemove.getNext());
+            ensureCapacity(-1);
+            return (E)nodeRemove.getData();
+            }
+            return null;
+    }
 }
-
-//    public E remove(int index){
-//
-//    }
 //
 //    public boolean remove(Object E){}
 //}

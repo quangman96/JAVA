@@ -28,6 +28,6 @@ public class DiscountServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/discount.jsp").forward(request, response);
+//        request.getRequestDispatcher("/web/discount.jsp").forward(request, response);
     }
 }

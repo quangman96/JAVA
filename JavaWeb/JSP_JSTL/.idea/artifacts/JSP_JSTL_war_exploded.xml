@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="JSP_JSTL:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSP_JSTL_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="JSP_JSTL/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="JSP_JSTL" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="org.apache.taglibs:taglibs-standard-impl:1.2.5" />
+          <element id="library" level="project" name="org.apache.taglibs:taglibs-standard-spec:1.2.5" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

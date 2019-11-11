@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MVC-MySQL-Demo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MVC_MySQL_Demo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MVC-MySQL-Demo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MVC-MySQL-Demo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jstl:jstl:1.2" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.17" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

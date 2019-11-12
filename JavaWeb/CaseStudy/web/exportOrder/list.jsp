@@ -28,7 +28,7 @@
         <tr>
             <td><a href="/exportOrder?action=view&id=${exportOrder.getIdExportOrder()}">${exportOrder.getName()}</a></td>
             <td>${exportOrder.getName()}</td>
-            <td>${customer.getCreateBy()}</td>
+            <td>${exportOrder.getCreateBy()}</td>
             <td><a href="/exportOrder?action=edit&id=${exportOrder.getIdExportOrder()}">edit</a></td>
             <td><a href="/exportOrder?action=delete&id=${exportOrder.getIdExportOrder()}">delete</a></td>
         </tr>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - inventor_manager@localhost" uuid="915a9386-03fb-4ad4-932b-b7ebb7e09c67">
+    <data-source name="inventory_management@localhost" uuid="ff20f3d6-3f12-4dd7-80c8-d64eaec0d079">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>

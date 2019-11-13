@@ -24,7 +24,7 @@
     </c:if>
 </p>
 <p>
-    <a href="/ExportOrder">Back to ExportOrder list</a>
+    <a href="/exportOrder">Back to ExportOrder list</a>
 </p>
 <form method="post">
     <fieldset>

@@ -24,7 +24,7 @@
     </c:if>
 </p>
 <p>
-    <a href="/ExportOrder">Back to ExportOrder list</a>
+    <a href="/exportOrder">Back to ExportOrder list</a>
 </p>
 <form method="post">
     <fieldset>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create exportOrder"></td>
+                <td><input type="submit" value="CREATE"></td>
             </tr>
         </table>
     </fieldset>

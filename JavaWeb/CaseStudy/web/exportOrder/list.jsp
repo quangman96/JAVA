@@ -21,16 +21,22 @@
         <td>ID</td>
         <td>Name</td>
         <td>CreateBy</td>
+        <td>CreateDate</td>
         <td>Edit</td>
         <td>Delete</td>
     </tr>
-    <c:forEach items='${requestScope["exportOrder"]}' var="exportOrder">
+    <c:forEach items='${requestScope["exportOrders"]}' var="export">
         <tr>
-            <td><a href="/exportOrder?action=view&id=${exportOrder.getIdExportOrder()}">${exportOrder.getName()}</a></td>
-            <td>${exportOrder.getName()}</td>
-            <td>${exportOrder.getCreateBy()}</td>
-            <td><a href="/exportOrder?action=edit&id=${exportOrder.getIdExportOrder()}">edit</a></td>
-            <td><a href="/exportOrder?action=delete&id=${exportOrder.getIdExportOrder()}">delete</a></td>
+<%--            <td><a href="/exportOrder?action=view&id=${exportOrder.getIdExportOrder()}">${exportOrder.getName()}</a></td>--%>
+            <td>${export.getIdExportOrder()}</td>
+            <td>${export.getName()}</td>
+            <td>${export.getCreateBy()}</td>
+            <td><c:if test="${not empty export.getCreateDay()}">
+                ${export.getCreateDay()}
+                </c:if>
+            </td>
+            <td><a href="/exportOrder?action=edit&id=${export.getIdExportOrder()}">edit</a></td>
+            <td><a href="/exportOrder?action=delete&idS=${export.getIdExportOrder()}">delete</a></td>
         </tr>
     </c:forEach>
 </table>

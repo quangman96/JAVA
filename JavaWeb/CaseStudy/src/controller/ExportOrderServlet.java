@@ -2,7 +2,7 @@ package controller;
 
 import model.ExportOrder;
 import service.ExportOrderJDBCServiceImpl;
-import service.ExportServiceImpl;
+import service.ExportService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +15,8 @@ import java.util.List;
 
 @WebServlet(name = "ExportOrderServlet",urlPatterns = "/exportOrder")
 public class ExportOrderServlet extends HttpServlet {
-    private ExportServiceImpl exportService = new ExportOrderJDBCServiceImpl();
+//    private ExportServiceI exportService = new ExportOrderJDBCServiceImpl();
+    private ExportService exportService = new ExportOrderJDBCServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if(action == null){
@@ -134,14 +135,14 @@ public class ExportOrderServlet extends HttpServlet {
 
     private void listExportOrder(HttpServletRequest request, HttpServletResponse response) {
         List<ExportOrder> exportOrders = this.exportService.findAll();
-        request.setAttribute("exportOrder", exportOrders);
+        request.setAttribute("exportOrders", exportOrders);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("exportOrder/list.jsp");
-        try{
-            dispatcher.forward(request,response);
+        try {
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -191,12 +192,13 @@ public class ExportOrderServlet extends HttpServlet {
     private void createExportOrder(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String createBy = request.getParameter("createBy");
-        int idExportOrder = (int) (Math.random() * 10000);
+//        String createDate = request.getParameter("createDate");
+//        int idExportOrder = (int) (Math.random() * 10000);
 
-        ExportOrder exportOrder = new ExportOrder(idExportOrder, name, createBy);
+        ExportOrder exportOrder = new ExportOrder(name, createBy);
         this.exportService.save(exportOrder);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("export/create.jsp");
-        request.setAttribute("messenge", "new exportOrder was created");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("exportOrder/create.jsp");
+        request.setAttribute("message", "New exportOrder was created");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

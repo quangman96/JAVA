@@ -22,11 +22,16 @@ public class ExportOrder {
         this.isDelete = isDelete;
         this.createBy = createBy;
     }
-
-    public ExportOrder(int idExportOrder, String name, String createBy) {
+    public ExportOrder(String name, String createBy) {
+//        this.idExportOrder = idExportOrder;
+        this.name = name;
+        this.createBy = createBy;
+    }
+    public ExportOrder(int idExportOrder, String name, String createBy, String createDate) {
         this.idExportOrder = idExportOrder;
         this.name = name;
         this.createBy = createBy;
+        this.createDay = createDate;
     }
 
     public int getIdExportOrder() {
@@ -76,4 +81,8 @@ public class ExportOrder {
     public void setModifyBy(String modifyBy) {
         this.modifyBy = modifyBy;
     }
+
+    public void setCreateDay(String createDay) { this.createDay = createDay;}
+
+    public String getCreateDay() { return createDay; }
 }

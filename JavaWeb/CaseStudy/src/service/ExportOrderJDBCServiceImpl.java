@@ -8,30 +8,30 @@ import java.util.List;
 
 import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
-public class ExportOrderJDBCServiceImpl implements ExportServiceImpl {
-    private String jdbcURL = "jdbc:mysql//localhost:3306/inventory_management";
+public class ExportOrderJDBCServiceImpl implements ExportService {
+    private String jdbcURL = "jdbc:mysql://localhost:3306/inventory_management";
     private String jdbcUsername = "root";
     private String jdbcPassword = "manmeo96";
 
-    private static final String INSERT_USER_SQL = "INSERT INTO export_order " + "(name,createBy) VALUES"
-            + "(?,?);";
-    private static final String SELECT_USER_BY_IDEXPORTORDER = "SELECT idExportOrder,name,exportDate,createBy form export_order WHERE idExportOrder = ?; ";
-    private static final String SELECT_ALL_EXPORTORDER = "SELECT idExportOrder,name,exportDate,createBy FORM export_order ;";
-    private static final String DELETE_USER_SQL = "DELETE FROM export_order WHERE idExportOrder = ?;";
-    private static final String UPDATE_USER_SQL = "UPDATE export_order SET name=?,modifyBy=? WHERE idExportOrder = ?;";
-
+        private static final String INSERT_USER_SQL = "INSERT INTO export_order " + "(name,createBy) VALUES" + "(?,?);";
+        private static final String SELECT_USER_BY_IDEXPORTORDER = "SELECT idExportOrder,name,exportDate,createBy form export_order WHERE idExportOrder = ?; ";
+        private static final String SELECT_ALL_EXPORTORDER = "SELECT idExportOrder,name,createBy,createDate FROM export_order ;";
+        private static final String DELETE_USER_SQL = "DELETE FROM export_order WHERE idExportOrder = ?;";
+        private static final String UPDATE_USER_SQL = "UPDATE export_order SET name=?,modifyBy=? WHERE idExportOrder = ?;";
     protected Connection getConnection() {
-        Connection connection = null;
+    Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return connection;
+        Class.forName("com.mysql.jdbc.Driver");
+        connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
+        return connection;
+}
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -51,7 +51,7 @@ public class ExportOrderJDBCServiceImpl implements ExportServiceImpl {
 
     @Override
     public List<ExportOrder> findAll() {
-        List<ExportOrder> users = new ArrayList<>();
+        List<ExportOrder> exportOrder = new ArrayList<>();
        try( Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EXPORTORDER);) {
             System.out.println(preparedStatement);
@@ -61,16 +61,17 @@ public class ExportOrderJDBCServiceImpl implements ExportServiceImpl {
                 int idExportOrder = rs.getInt("idExportOrder");
                 String name = rs.getString("name");
                 String createBy = rs.getString("createBy");
-                users.add(new ExportOrder(idExportOrder,name,createBy));
+                String createDate = rs.getString("createDate");
+                exportOrder.add(new ExportOrder(idExportOrder,name,createBy,createDate));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return users;
+        return exportOrder;
     }
 
     @Override
-    public void save (ExportOrder exportOrder){
+    public void save(ExportOrder exportOrder){
         System.out.println("INSERT_USER_SQL");
         try(Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
@@ -96,7 +97,8 @@ public class ExportOrderJDBCServiceImpl implements ExportServiceImpl {
                 int id = rs.getInt("idExportOrder");
                 String exportDate = rs.getString("exportDate");
                 String createBy = rs.getString("createBy");
-                exportOrder = new ExportOrder(id, name, createBy);
+                String createDate = rs.getString("createDate");
+                exportOrder = new ExportOrder(id, name, createBy,createDate);
             }
         } catch (SQLException e) {
             printSQLException(e);

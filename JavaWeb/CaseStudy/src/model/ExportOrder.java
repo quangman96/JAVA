@@ -3,35 +3,24 @@ package model;
 public class ExportOrder {
     private int idExportOrder;
     private String name;
-    private String exportDate;
-    private int isDelete;
     private String deleteBy;
-    private String deleteDay;
-    private String modifyBy;
-    private String modifyDay;
+    private String deleteDate;
     private String createBy;
-    private String createDay;
-
-    public ExportOrder(){
+    private String createDate;
+    private String modifyBy;
+    private String modifyDate;
+    public ExportOrder() {
     }
 
-    public ExportOrder(int idExportOrder, String name, String exportDate, int isDelete, String createBy){
+    public ExportOrder(int idExportOrder, String name, String deleteBy, String deleteDate, String createBy, String createDate, String modifyBy, String modifyDate) {
         this.idExportOrder = idExportOrder;
         this.name = name;
-        this.exportDate = exportDate;
-        this.isDelete = isDelete;
+        this.deleteBy = deleteBy;
+        this.deleteDate = deleteDate;
         this.createBy = createBy;
-    }
-    public ExportOrder(String name, String createBy) {
-//        this.idExportOrder = idExportOrder;
-        this.name = name;
-        this.createBy = createBy;
-    }
-    public ExportOrder(int idExportOrder, String name, String createBy, String createDate) {
-        this.idExportOrder = idExportOrder;
-        this.name = name;
-        this.createBy = createBy;
-        this.createDay = createDate;
+        this.createDate = createDate;
+        this.modifyBy = modifyBy;
+        this.modifyDate = modifyDate;
     }
 
     public int getIdExportOrder() {
@@ -50,20 +39,20 @@ public class ExportOrder {
         this.name = name;
     }
 
-    public String getExportDate() {
-        return exportDate;
+    public String getDeleteBy() {
+        return deleteBy;
     }
 
-    public void setExportDate(String exportDate) {
-        this.exportDate = exportDate;
+    public void setDeleteBy(String deleteBy) {
+        this.deleteBy = deleteBy;
     }
 
-    public int getIsDelete() {
-        return isDelete;
+    public String getDeleteDate() {
+        return deleteDate;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setDeleteDate(String deleteDate) {
+        this.deleteDate = deleteDate;
     }
 
     public String getCreateBy() {
@@ -74,6 +63,14 @@ public class ExportOrder {
         this.createBy = createBy;
     }
 
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
     public String getModifyBy() {
         return modifyBy;
     }
@@ -82,7 +79,11 @@ public class ExportOrder {
         this.modifyBy = modifyBy;
     }
 
-    public void setCreateDay(String createDay) { this.createDay = createDay;}
+    public String getModifyDate() {
+        return modifyDate;
+    }
 
-    public String getCreateDay() { return createDay; }
+    public void setModifyDate(String modifyDate) {
+        this.modifyDate = modifyDate;
+    }
 }

@@ -10,14 +10,15 @@ import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
 public class ExportOrderJDBCServiceImpl implements ExportService {
     private String jdbcURL = "jdbc:mysql://localhost:3306/inventory_management";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "manmeo96";
+    private String jdbcUsername = "codegym";
+    private String jdbcPassword = "codegym.123";
 
         private static final String INSERT_USER_SQL = "INSERT INTO export_order " + "(name,createBy) VALUES" + "(?,?);";
-        private static final String SELECT_USER_BY_IDEXPORTORDER = "SELECT idExportOrder,name,exportDate,createBy form export_order WHERE idExportOrder = ?; ";
-        private static final String SELECT_ALL_EXPORTORDER = "SELECT idExportOrder,name,createBy,createDate FROM export_order ;";
-        private static final String DELETE_USER_SQL = "DELETE FROM export_order WHERE idExportOrder = ?;";
-        private static final String UPDATE_USER_SQL = "UPDATE export_order SET name=?,modifyBy=? WHERE idExportOrder = ?;";
+//        private static final String SELECT_USER_BY_IDEXPORTORDER = "SELECT idExportOrder,name,exportDate,createBy form export_order WHERE idExportOrder = ?; ";
+        private static final String SELECT_USER_BY_IDEXPORTORDER = "SELECT * FROM export_order WHERE (idExportOrder = ?);";
+        private static final String SELECT_ALL_EXPORTORDER = "SELECT * FROM export_order WHERE (isDelete = 0);";
+        private static final String DELETE_USER_SQL = "UPDATE export_order SET isDelete = 1, deleteBy = ? WHERE (idExportOrder = ?);";
+        private static final String UPDATE_USER_SQL = "UPDATE export_order SET name = ?, modifyBy = ? WHERE (idExportOrder = ?);";
     protected Connection getConnection() {
     Connection connection = null;
         try {
@@ -62,7 +63,9 @@ public class ExportOrderJDBCServiceImpl implements ExportService {
                 String name = rs.getString("name");
                 String createBy = rs.getString("createBy");
                 String createDate = rs.getString("createDate");
-                exportOrder.add(new ExportOrder(idExportOrder,name,createBy,createDate));
+                String modifyBy = rs.getString("modifyBy");
+                String modifyDate = rs.getString("modifyDate");
+                exportOrder.add(new ExportOrder(idExportOrder,name,null,null,createBy,createDate,modifyBy,modifyDate));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -77,28 +80,34 @@ public class ExportOrderJDBCServiceImpl implements ExportService {
         PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
             preparedStatement.setString(1,exportOrder.getName());
             preparedStatement.setString(2,exportOrder.getCreateBy());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
         }
     }
     @Override
 //    idExportOrder,name,exportDate,createBy
-    public ExportOrder findById(int idExportOrder) {
+    public ExportOrder findById(int id) {
         ExportOrder exportOrder = null;
-        try (Connection connection = getConnection();
+            try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_IDEXPORTORDER);) {
-            preparedStatement.setInt(1, idExportOrder);
+            preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
+                int idExportOrder = rs.getInt("idExportOrder");
                 String name = rs.getString("name");
-                int id = rs.getInt("idExportOrder");
-                String exportDate = rs.getString("exportDate");
+//                String exportDate = rs.getString("exportDate");
+//                String deleteBy = rs.getString("deleteBy");
+//                String deleteDate = rs.getString("deleteDate");
+                String modifyBy = rs.getString("modifyBy");
+                String modifyDate = rs.getString("modifyDate");
                 String createBy = rs.getString("createBy");
                 String createDate = rs.getString("createDate");
-                exportOrder = new ExportOrder(id, name, createBy,createDate);
+                exportOrder = new ExportOrder(idExportOrder, name,null,null, createBy,createDate, modifyBy, modifyDate);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -124,11 +133,14 @@ public class ExportOrderJDBCServiceImpl implements ExportService {
     }
 
     @Override
-    public void remove(int idExportOrder){
+    public void remove(int idExportOrder, ExportOrder exportOrder){
+        boolean rowUpdated;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_USER_SQL);){
-            statement.setInt(1,idExportOrder);
-            statement.executeUpdate();
+//            statement.setInt(1,idExportOrder);
+            statement.setString(1,exportOrder.getDeleteBy());
+            statement.setInt(2,exportOrder.getIdExportOrder());
+            rowUpdated = statement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
         }

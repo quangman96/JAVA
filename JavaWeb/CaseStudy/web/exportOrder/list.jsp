@@ -20,8 +20,15 @@
     <tr>
         <td>ID</td>
         <td>Name</td>
+        <td>NameStaff</td>
+        <td>NameStock</td>
+        <td>NameStore</td>
+<%--        <td>DeleteBy</td>--%>
+<%--        <td>DeleteDay</td>--%>
         <td>CreateBy</td>
         <td>CreateDate</td>
+        <td>ModifyBy</td>
+        <td>ModifyDate</td>
         <td>Edit</td>
         <td>Delete</td>
     </tr>
@@ -30,13 +37,22 @@
 <%--            <td><a href="/exportOrder?action=view&id=${exportOrder.getIdExportOrder()}">${exportOrder.getName()}</a></td>--%>
             <td>${export.getIdExportOrder()}</td>
             <td>${export.getName()}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+<%--            <td></td>--%>
+<%--            <td></td>--%>
             <td>${export.getCreateBy()}</td>
-            <td><c:if test="${not empty export.getCreateDay()}">
-                ${export.getCreateDay()}
+            <td><c:if test="${not empty export.getCreateDate()}">
+                ${export.getCreateDate()}
                 </c:if>
             </td>
+            <td>${export.getModifyBy()}</td>
+            <td>${export.getModifyDate()}</td>
+<%--        <td></td>--%>
+<%--        <td></td>--%>
             <td><a href="/exportOrder?action=edit&id=${export.getIdExportOrder()}">edit</a></td>
-            <td><a href="/exportOrder?action=delete&idS=${export.getIdExportOrder()}">delete</a></td>
+            <td><a href="/exportOrder?action=delete&id=${export.getIdExportOrder()}">delete</a></td>
         </tr>
     </c:forEach>
 </table>

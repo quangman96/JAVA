@@ -14,5 +14,5 @@ public interface ExportService{
 
     void update (int idExportOrder, ExportOrder exportOrder);
 
-    void remove (int idExport);
+    void remove (int idExport, ExportOrder exportOrder);
 }

@@ -14,28 +14,30 @@
 <body>
 <h1>Delete customer</h1>
 <p>
-    <a href="/customers">Back to customer list</a>
+    <c:if test='${requestScope["message"] != null}'>
+        <span class="message">${requestScope["message"]}</span>
+    </c:if>
+</p>
+<p>
+    <a href="/exportOrder">Back to customer list</a>
 </p>
 <form method="post">
     <h3>Are you sure?</h3>
     <fieldset>
-        <legend>Customer information</legend>
+        <legend>Export Order information</legend>
         <table>
             <tr>
                 <td>Name: </td>
-                <td>${requestScope["customer"].getName()}</td>
+                <td>${requestScope["exportOrder"].getName()}</td>
+<%--                <td>${requestScope["exportOrder"].getName()}</td>--%>
             </tr>
             <tr>
-                <td>Email: </td>
-                <td>${requestScope["customer"].getEmail()}</td>
+                <td>Delete By: </td>
+                <td><input type="text" name ="deleteBy" id="deleteBy" value="${requestScope["exportOrder"].getDeleteBy()}"></td>
             </tr>
             <tr>
-                <td>Address: </td>
-                <td>${requestScope["customer"].getAddress()}</td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Delete customer"></td>
-                <td><a href="/customers">Back to customer list</a></td>
+                <td><input type="submit" value="Delete ExportOrder"></td>
+<%--                <td><a href="/customers">Back to Export Order list</a></td>--%>
             </tr>
         </table>
     </fieldset>

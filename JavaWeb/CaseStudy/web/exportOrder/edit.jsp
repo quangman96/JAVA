@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: quangman
@@ -29,12 +30,12 @@
                 <td><input type="text" name="name" id="name" value="${requestScope["exportOrder"].getName()}"></td>
             </tr>
             <tr>
-                <td>Create By: </td>
-                <td><input type="text" name="createBy" id="createBy" value="${requestScope["exportOrder"].getCreateBy()}"></td>
+                <td>Modify By: </td>
+                <td><input type="text" name="modifyBy" id="modifyBy" value="${requestScope["exportOrder"].getModifyBy()}"></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Update exportOrder"></td>
+                <td><input type="submit" value="UPDATE"></td>
             </tr>
         </table>
     </fieldset>

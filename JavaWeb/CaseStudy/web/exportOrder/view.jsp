@@ -24,6 +24,5 @@
         <td>CreateBy: </td>
         <td>${requestScope["exportOrder"].getCreateBy()}</td>
     </tr>
-</table>
-</body>
+</table></body>
 </html>

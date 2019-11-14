@@ -11,13 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
 
 @WebServlet(name = "ExportOrderServlet",urlPatterns = "/exportOrder")
 public class ExportOrderServlet extends HttpServlet {
 //    private ExportServiceI exportService = new ExportOrderJDBCServiceImpl();
     private ExportService exportService = new ExportOrderJDBCServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String search = request.getParameter("txtSearch");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.println("<html>");
+        writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+
         String action = request.getParameter("action");
         if(action == null){
             action = "";
@@ -85,7 +94,7 @@ public class ExportOrderServlet extends HttpServlet {
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
-        int idExportOrder = Integer.parseInt(request.getParameter("idExportOrder"));
+        int idExportOrder = Integer.parseInt(request.getParameter("id"));
         ExportOrder exportOrder = this.exportService.findById(idExportOrder);
         RequestDispatcher dispatcher;
         if(exportOrder == null){
@@ -104,14 +113,14 @@ public class ExportOrderServlet extends HttpServlet {
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
-        int idExportOrder = Integer.parseInt(request.getParameter("idExportOrder"));
-        ExportOrder exportOrder = this.exportService.findById(idExportOrder);
+        int id = Integer.parseInt(request.getParameter("id"));
+        ExportOrder exportOrder = this.exportService.findById(id);
         RequestDispatcher dispatcher;
         if(exportOrder == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             request.setAttribute("exportOrder", exportOrder);
-            dispatcher = request.getRequestDispatcher("customer/edit.jsp");
+            dispatcher = request.getRequestDispatcher("exportOrder/edit.jsp");
         }
         try {
             dispatcher.forward(request, response);
@@ -148,13 +157,20 @@ public class ExportOrderServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int idExportOrder = Integer.parseInt(request.getParameter("idExportOrder"));
+        int idExportOrder = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String deleteBy = request.getParameter("deleteBy");
         ExportOrder exportOrder = this.exportService.findById(idExportOrder);
         RequestDispatcher dispatcher;
         if(exportOrder == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            this.exportService.remove(idExportOrder);
+            exportOrder.setName(name);
+            exportOrder.setDeleteBy(deleteBy);
+            this.exportService.remove(idExportOrder,exportOrder);
+            request.setAttribute("exportOrder",exportOrder);
+            request.setAttribute("message","Export Order was deleted");
+            dispatcher = request.getRequestDispatcher("exportOrder/delete.jsp");
             try {
                 response.sendRedirect("/exportOrder");
             } catch (IOException e) {
@@ -166,22 +182,24 @@ public class ExportOrderServlet extends HttpServlet {
     private void updateExportOrder(HttpServletRequest request, HttpServletResponse response) {
         int idExportOrder = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String createBy = request.getParameter("createBy");
+//        String createBy = request.getParameter("createBy");
+        String modifyBy = request.getParameter("modifyBy");
+
         ExportOrder exportOrder = this.exportService.findById(idExportOrder);
-        RequestDispatcher requestDispatcher;
+        RequestDispatcher dispatcher;
         if(exportOrder == null){
-            requestDispatcher = request.getRequestDispatcher("error-404.jsp");
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             exportOrder.setName(name);
-            exportOrder.setCreateBy(createBy);
+            exportOrder.setModifyBy(modifyBy);
 
             this.exportService.update(idExportOrder, exportOrder);
             request.setAttribute("exportOrder", exportOrder);
             request.setAttribute("message", "Customer information was updated");
-            requestDispatcher = request.getRequestDispatcher("exportOrder/edit.jsp");
+            dispatcher = request.getRequestDispatcher("exportOrder/edit.jsp");
         }
         try {
-            requestDispatcher.forward(request, response);
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -193,9 +211,9 @@ public class ExportOrderServlet extends HttpServlet {
         String name = request.getParameter("name");
         String createBy = request.getParameter("createBy");
 //        String createDate = request.getParameter("createDate");
-//        int idExportOrder = (int) (Math.random() * 10000);
+        int idExportOrder = (int) (Math.random() * 10000);
 
-        ExportOrder exportOrder = new ExportOrder(name, createBy);
+        ExportOrder exportOrder = new ExportOrder(idExportOrder,name,null,null,createBy,null,null,null);
         this.exportService.save(exportOrder);
         RequestDispatcher dispatcher = request.getRequestDispatcher("exportOrder/create.jsp");
         request.setAttribute("message", "New exportOrder was created");

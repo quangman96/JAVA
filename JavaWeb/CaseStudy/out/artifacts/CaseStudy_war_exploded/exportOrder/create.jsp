@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Create exportOrder"></td>
+                <td><input type="submit" value="CREATE"></td>
             </tr>
         </table>
     </fieldset>

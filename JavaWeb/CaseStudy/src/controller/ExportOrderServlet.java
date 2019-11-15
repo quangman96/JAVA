@@ -20,12 +20,12 @@ public class ExportOrderServlet extends HttpServlet {
 //    private ExportServiceI exportService = new ExportOrderJDBCServiceImpl();
     private ExportService exportService = new ExportOrderJDBCServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String search = request.getParameter("txtSearch");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+//        String search = request.getParameter("txtSearch");
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<html>");
+//        writer.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
 
         String action = request.getParameter("action");
         if(action == null){

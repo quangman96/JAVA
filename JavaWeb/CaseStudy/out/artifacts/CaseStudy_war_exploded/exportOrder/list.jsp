@@ -34,10 +34,12 @@
     </tr>
     <c:forEach items='${requestScope["exportOrders"]}' var="export">
         <tr>
-<%--            <td><a href="/exportOrder?action=view&id=${exportOrder.getIdExportOrder()}">${exportOrder.getName()}</a></td>--%>
+<%--            <td><a href="/detailExportOrders?action=view&id=${export.getIdExportOrder()}">${export.getName()}</a></td>--%>
             <td>${export.getIdExportOrder()}</td>
-            <td>${export.getName()}</td>
-            <td></td>
+<%--            <td>${export.getName()}</td>--%>
+    <td><a href="/detailExportOrder?action=view&id=${export.getIdExportOrder()}">${export.getName()}</a></td>
+
+    <td></td>
             <td></td>
             <td></td>
 <%--            <td></td>--%>

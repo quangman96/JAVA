@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -65,7 +64,7 @@ public class ExportOrderServlet extends HttpServlet {
                 showDeleteForm(request, response);
                 break;
             case "view":
-                viewCustomer(request, response);
+                viewDetailExportOrder(request, response);
                 break;
             default:
                 listExportOrder(request, response);
@@ -73,8 +72,8 @@ public class ExportOrderServlet extends HttpServlet {
         }
     }
 
-    private void viewCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int idExportOrder = Integer.parseInt(request.getParameter("idExportOrder"));
+    private void viewDetailExportOrder(HttpServletRequest request, HttpServletResponse response) {
+        int idExportOrder = Integer.parseInt(request.getParameter("id"));
         ExportOrder exportOrder = this.exportService.findById(idExportOrder);
         RequestDispatcher dispatcher;
         if(exportOrder == null){
@@ -85,11 +84,10 @@ public class ExportOrderServlet extends HttpServlet {
         }
         try {
             dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
+
 
     }
 

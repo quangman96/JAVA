@@ -10,7 +10,8 @@ public interface ExportService{
 
     void save (ExportOrder exportOrder);
 
-    ExportOrder findById(int idExportOrder);
+    ExportOrder findById(int id);
+//    List<ExportOrder> findById(int id);
 
     void update (int idExportOrder, ExportOrder exportOrder);
 

@@ -37,7 +37,7 @@
 <%--            <td><a href="/detailExportOrders?action=view&id=${export.getIdExportOrder()}">${export.getName()}</a></td>--%>
             <td>${export.getIdExportOrder()}</td>
 <%--            <td>${export.getName()}</td>--%>
-    <td><a href="/detailExportOrder?action=view&id=${export.getIdExportOrder()}">${export.getName()}</a></td>
+    <td><a href="/exportOrder?action=view&id=${export.getIdExportOrder()}">${export.getName()}</a></td>
 
     <td></td>
             <td></td>

@@ -25,7 +25,6 @@ dependencies {
     compile group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.11.RELEASE'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.2.RELEASE'
-    // https://mvnrepository.com/artifact/org.webjars/bootstrap
     compile group: 'org.webjars', name: 'bootstrap', version: '4.3.1'
 
 }

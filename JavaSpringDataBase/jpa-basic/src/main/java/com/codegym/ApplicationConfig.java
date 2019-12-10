@@ -75,12 +75,12 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         return templateEngine;
     }
 
-    @Bean
-    public ThymeleafViewResolver viewResolver(){
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        return viewResolver;
-    }
+        @Bean
+        public ThymeleafViewResolver viewResolver(){
+            ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+            viewResolver.setTemplateEngine(templateEngine());
+            return viewResolver;
+        }
 
     //JPA configuration
     @Bean
@@ -105,9 +105,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/demo-cms");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "1qaz0plm*$" );
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring-crud");
+        dataSource.setUsername("codegym");
+        dataSource.setPassword("codegym.123");
         return dataSource;
     }
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" >
+    <title>Manage data</title>
+</head>
+<body>
+<nav  class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+
+    </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+
+                        <span data-feather="home"></span>
+                        Menu <span class="sr-only">(current)</span>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/create-customer">
+                            <span data-feather="file"></span>
+                            Add customer
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <span data-feather="users"></span>
+                            Customers
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+
+            <th:block th:if="${message}">
+                <div class="alert alert-success" >
+                    <span th:text="${message}"></span>
+                </div>
+
+            </th:block>
+
+
+            <h2>Edit customer</h2>
+            <form th:action="@{/edit-customer}" th:object="${customer}" method="post">
+                <input th:type="hidden" name="id" th:field="*{id}">
+                <div class="form-group">
+                    <label >First name:</label>
+                    <input type="text" class="form-control" th:field="*{firstName}"/>
+                </div>
+                <div class="form-group">
+                    <label >Last name:</label>
+                    <input type="text" class="form-control" th:field="*{lastName}"/>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Update customer</button>
+
+            </form>
+
+
+        </main>
+    </div>
+</div>
+
+<th:block >
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}" ></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/popper.min.js}" ></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}" ></script>
+</th:block>
+</body>
+</html>
+
+

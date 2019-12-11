@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8890dd67-1b74-45aa-bbf0-04133bfc129d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/ApplicationInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/model/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/repository/CustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/repository/Repository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/repository/impl/CustomerRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/service/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/java/com/codegym/cms/service/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/webapp/WEB-INF/views/customer/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../JavaSpringMVC/Spring-crud-customer/src/main/webapp/WEB-INF/views/customer/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/codegym/ApplicationConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/codegym/ApplicationConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/jpa-basic-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/jpa-basic-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codegym/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codegym/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../JavaSpringMVC/SpringCustomer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSpringMVC/SpringCustomer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -266,6 +233,7 @@
       <workItem from="1575623687926" duration="2569000" />
       <workItem from="1575873664713" duration="3957000" />
       <workItem from="1575961040063" duration="1079000" />
+      <workItem from="1576021806963" duration="349000" />
     </task>
     <servers />
   </component>
@@ -286,10 +254,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="223" y="76" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1575623910069" />
-    <state x="499" y="126" key="FileChooserDialogImpl" timestamp="1575961097176">
+    <state x="499" y="126" key="FileChooserDialogImpl" timestamp="1576022085383">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="499" y="126" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1575961097176" />
+    <state x="499" y="126" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1576022085383" />
     <state width="1010" height="674" key="GridCell.Tab.0.bottom" timestamp="1575879870179">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -342,10 +310,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1575623897344" />
-    <state x="394" y="210" key="com.intellij.ide.util.TipDialog" timestamp="1575873666459">
+    <state x="394" y="210" key="com.intellij.ide.util.TipDialog" timestamp="1576021807510">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="394" y="210" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1575873666459" />
+    <state x="394" y="210" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1576021807510" />
     <state x="39" y="0" key="new project wizard" timestamp="1575874078893">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

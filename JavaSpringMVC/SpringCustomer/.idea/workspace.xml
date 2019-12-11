@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="588fc234-ade5-4a88-bc55-7fb63348ffd9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../JavaSpringDataBase/jpa-basic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSpringDataBase/jpa-basic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +62,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../JavaSpringDataBase/jpa-basic" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -94,6 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575616587092</updated>
       <workItem from="1575616591372" duration="5498000" />
+      <workItem from="1576022104801" duration="7000" />
     </task>
     <servers />
   </component>

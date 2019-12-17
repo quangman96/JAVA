@@ -1,12 +1,11 @@
 package com.codegym.cms;
 
+//import com.codegym.cms.formatter.ProvinceFormatter.ProvinceFormatter;
 import com.codegym.cms.formatter.ProvinceFormatter;
-import com.codegym.cms.repository.CustomerRepository;
-import com.codegym.cms.repository.ProvinceRepository;
-import com.codegym.cms.repository.impl.CustomerRepositoryImpl;
-import com.codegym.cms.repository.impl.ProvinceRepositoryImpl;
 import com.codegym.cms.service.CustomerService;
+//import com.codegym.cms.service.CustomerServiceImpl;
 import com.codegym.cms.service.ProvinceService;
+//import com.codegym.cms.service.ProvinceServiceImpl;
 import com.codegym.cms.service.impl.CustomerServiceImpl;
 import com.codegym.cms.service.impl.ProvinceServiceImpl;
 import org.springframework.beans.BeansException;
@@ -18,7 +17,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.Formatter;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -45,64 +45,32 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan("com.codegym")
-public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+@EnableJpaRepositories("com.codegym.cms.repository")
+@ComponentScan("com.codegym.cms")
+@EnableSpringDataWebSupport
 
+public class ApplicationConfig extends WebMvcConfigurerAdapter
+        implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-    @Bean
-    public CustomerRepository customerRepository(){
-        return new CustomerRepositoryImpl();
+    public void setApplicationContext(ApplicationContext applicationContext)
+            throws BeansException {
+        this.applicationContext =applicationContext;
     }
 
     @Bean
     public CustomerService customerService(){
         return new CustomerServiceImpl();
     }
-
     @Bean
     public ProvinceService provinceService(){
         return new ProvinceServiceImpl();
     }
-
-    @Bean
-    public ProvinceRepository provinceRepository(){
-        return new ProvinceRepositoryImpl();
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
     }
-    //Thymeleaf Configuration
-    @Bean
-    public SpringResourceTemplateResolver templateResolver(){
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views");
-        templateResolver.setSuffix(".html");
-        templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        return templateResolver;
-    }
-
-    @Bean
-    public SpringTemplateEngine templateEngine(){
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        return templateEngine;
-    }
-
-    @Bean
-    public ThymeleafViewResolver viewResolver(){
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setContentType("text/html;charset=utf-8");
-        return viewResolver;
-    }
-
-    //JPA configuration
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
@@ -111,9 +79,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        LocalContainerEntityManagerFactoryBean em =
+                new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"com.codegym.model"});
+        em.setPackagesToScan(new String[]{"com.codegym.cms.model"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -125,9 +94,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/demo-cms?useUnicode=true&characterEncoding=UTF-8");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "1qaz0plm*$" );
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring-crud");
+        dataSource.setUsername("codegym");
+        dataSource.setPassword("codegym.123");
         return dataSource;
     }
 
@@ -141,31 +110,38 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.connection.useUnicode","true");
-        properties.setProperty("hibernate.connection.charset","UTF-8");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
+    @Bean
+    public SpringResourceTemplateResolver templateResolver(){
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        return templateResolver;
+    }
 
+    @Bean
+    public TemplateEngine templateEngine(){
+        TemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        return templateEngine;
+    }
+
+    @Bean
+    public ThymeleafViewResolver viewResolver(){
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine((ISpringTemplateEngine) templateEngine());
+        return viewResolver;
+    }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/webjars/**")
-                .addResourceLocations("/webjars/").resourceChain(false);
-
-        registry.addResourceHandler("/css/**")
-                .addResourceLocations("/css/").resourceChain(false);
-
-        registry.addResourceHandler("/icon-fonts/**")
-                .addResourceLocations("/icon-fonts/").resourceChain(false);
-
-        registry.addResourceHandler("/img/**")
-                .addResourceLocations("/img/").resourceChain(false);
-
-        registry.addResourceHandler("/js/**")
-                .addResourceLocations("/js/").resourceChain(false);
-    }
-
+                .addResourceHandler("/source/**")
+                .addResourceLocations("/source/").resourceChain(false);
+        }
     @Bean
     public MessageSource messageSource(){
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -173,10 +149,4 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         messageSource.setDefaultEncoding("UFT-8");
         return messageSource;
     }
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter((Formatter<?>) new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
-    }
-
 }

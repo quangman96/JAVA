@@ -1,6 +1,8 @@
 package com.codegym.cms.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "customers")
@@ -9,8 +11,16 @@ public class Customer {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+//    @NotEmpty
+//    @Size(min=5,max=30)
     private String firstName;
+//    @NotEmpty
+//    @Size(min=5,max=30)
     private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Province province;
 
     public Customer() {}
 
@@ -46,5 +56,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
     }
 }

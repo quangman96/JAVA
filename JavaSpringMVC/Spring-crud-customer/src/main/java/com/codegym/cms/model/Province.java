@@ -1,7 +1,10 @@
 package com.codegym.cms.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "provinces")
@@ -9,11 +12,12 @@ public class Province {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
+    @NotEmpty
+    @Size(min=5,max=30)
     private String name;
 
-    @OneToMany(targetEntity = Customer.class)
-    private List<Customer> customers;
+    @OneToMany(mappedBy = "province")
+    private Set<Customer> customers;
 
     public Province() {
     }
@@ -38,11 +42,11 @@ public class Province {
         this.name = name;
     }
 
-    public List<Customer> getCustomers() {
+    public Set<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(List<Customer> customers) {
+    public void setCustomers(Set<Customer> customers) {
         this.customers = customers;
     }
 }

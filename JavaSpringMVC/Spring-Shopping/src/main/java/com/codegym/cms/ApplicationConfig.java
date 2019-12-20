@@ -1,16 +1,11 @@
 package com.codegym.cms;
 
-//import com.codegym.cms.formatter.ProvinceFormatter.ProvinceFormatter;
-//import com.codegym.cms.formatter.ProvinceFormatter;
-//import com.codegym.cms.service.CustomerService;
-////import com.codegym.cms.service.CustomerServiceImpl;
-//import com.codegym.cms.service.ProvinceService;
-////import com.codegym.cms.service.ProvinceServiceImpl;
-//import com.codegym.cms.service.impl.CustomerServiceImpl;
-//import com.codegym.cms.service.impl.ProvinceServiceImpl;
-import com.codegym.cms.service.CategoryService;
+import com.codegym.cms.formatter.BrandFormatter;
+import com.codegym.cms.service.BrandService;
+import com.codegym.cms.service.PhotoService;
 import com.codegym.cms.service.ProductService;
-import com.codegym.cms.service.impl.CategoryServiceImpl;
+import com.codegym.cms.service.impl.BrandServiceImpl;
+import com.codegym.cms.service.impl.PhotoServiceImpl;
 import com.codegym.cms.service.impl.ProductServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +26,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -44,6 +40,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -68,13 +65,14 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
         return new ProductServiceImpl();
     }
     @Bean
-    public CategoryService categoryService(){
-        return new CategoryServiceImpl();
+    public BrandService brandService(){
+        return new BrandServiceImpl();
     }
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
-//    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new BrandFormatter(applicationContext.getBean(BrandService.class)));
+    }
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
@@ -98,7 +96,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/spring-crud");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/shopping");
         dataSource.setUsername("codegym");
         dataSource.setPassword("codegym.123");
         return dataSource;
@@ -140,17 +138,28 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
         viewResolver.setTemplateEngine((ISpringTemplateEngine) templateEngine());
         return viewResolver;
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/source/**")
                 .addResourceLocations("/source/").resourceChain(false);
+        registry
+                .addResourceHandler("/images/**")
+                .addResourceLocations("/images/").resourceChain(false);
     }
-    @Bean
-    public MessageSource messageSource(){
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("message");
-        messageSource.setDefaultEncoding("UFT-8");
-        return messageSource;
+    @Bean(name="multipartResolver")
+    public CommonsMultipartResolver getResolver() throws IOException {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSizePerFile(5242880);
+        return resolver;
     }
+
+//    @Bean
+//    public MessageSource messageSource(){
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//        messageSource.setBasename("message");
+//        messageSource.setDefaultEncoding("UFT-8");
+//        return messageSource;
+//    }
 }

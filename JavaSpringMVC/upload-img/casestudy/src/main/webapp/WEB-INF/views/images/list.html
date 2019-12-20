@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create-image">Create new User</a>
+<h1>User</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>nameImages</th>
+        <th>Description</th>
+        <th> Images </th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="image : ${images}">
+        <tr>
+            <td th:text="${image.id}"></td>
+            <td th:text="${image.nameImages}"></td>
+            <td th:text="${image.description}"></td>
+            <td><img width="150px" height="150px" th:src="@{'/images/' + ${image.images}}"></td>
+            <td><a th:href="@{/edit-images/__${image.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-images/__${image.id}__ }">Delete</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

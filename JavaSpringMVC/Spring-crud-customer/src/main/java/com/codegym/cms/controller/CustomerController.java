@@ -77,7 +77,6 @@ public class CustomerController {
         modelAndView.addObject("message", "Customer updated successfully");
         return modelAndView;
     }
-
     @GetMapping("/delete-customer/{id}")
     public ModelAndView showDeleteForm(@PathVariable Long id){
         Customer customer = customerService.findById(id);

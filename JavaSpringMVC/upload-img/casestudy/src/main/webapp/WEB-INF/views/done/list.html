@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/layout ::head">
+    head">
+
+</head>
+<body>
+<div th:replace="/layout/layout :: tophead"></div>
+<div th:replace="/layout/layout :: headtop"></div>
+</br>
+<div class="site-section" id="services-section">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 mb-5 position-relative">
+                <h2 class="section-title text-center mb-5">My Services</h2>
+            </div>
+            <th:block th:each="user : ${users}">
+                <div class="col-md-6 mb-4">
+                    <div class="service d-flex h-100">
+                        <div class="service-number mr-4"><span class="icon-style"></span></div>
+                        <div class="service-about">
+                            <h3 th:text="${user.name}"></h3>
+                            <p th:text="${user.aboutme}"></p>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+<section class="site-section block__62272" id="portfolio-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 position-relative">
+                <h2 class="section-title text-center mb-5">My Portfolio</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="posts" class="row no-gutter">
+        <th:block th:each="image : ${images}">
+            <div class="item web col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4">
+                <img class="img-fluid" th:src="@{'/images/' + ${image.images}}">
+            </div>
+        </th:block>
+
+    </div>
+    </div>
+</section>
+<section th:replace="/layout/layout :: testimonials"></section>
+<section th:replace="/layout/layout :: clients"></section>
+<section th:replace="/layout/layout :: contactForm"></section>
+<footer th:replace="/layout/layout :: footer"></footer>
+
+
+<a href="/create-user">Create images</a>
+<h1>User</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>nameImages</th>
+        <th>Description</th>
+        <th> Images</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="image : ${images}">
+        <tr>
+            <td th:text="${image.id}"></td>
+            <td th:text="${image.nameImages}"></td>
+            <td th:text="${image.Description}"></td>
+            <td th:text="${image.Description}"></td>
+            <td><img th:src="@{'/images/' + ${image.images}}"></td>
+            <td><a th:href="@{/edit-image/__${image.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-image/__${image.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+<div th:replace="/layout/layout :: bottom"></div>
+</html>

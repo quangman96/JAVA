@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+<h1>Edit user</h1>
+<p>
+    <a href="/images">Image list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-images}" th:object="${images}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{nameImages}"/></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><textarea  rows="10" cols="30" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td>Images:</td>
+            <td><img width="150px" height="150px" th:src="@{'/images/' + ${images.images}}"></td>
+<!--            <input type="file" th:field="*{file}">-->
+
+
+        </tr>
+<!--        <img width="150px" height="150px" th:src="@{'/images/' + ${image.images}}"></td>-->
+
+<!--            <input type="file" th:field="*{file}">-->
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update province"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

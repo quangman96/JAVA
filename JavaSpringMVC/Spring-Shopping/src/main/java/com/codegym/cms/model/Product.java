@@ -1,5 +1,7 @@
 package com.codegym.cms.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,6 +10,7 @@ import java.util.Set;
 public class Product {
 
     @Id
+//    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
@@ -19,7 +22,7 @@ public class Product {
 
     private boolean isDelete;
 
-    private String photo;
+    private String image;
 
 
     @ManyToOne
@@ -31,12 +34,18 @@ public class Product {
 
     public Product(){}
 
-    public Product(int id,String name, Long amount, Long price,String photo) {
+    public Product(int id,String name, Long amount, Long price) {
         this.id = id;
         this.name = name;
         this.amount = amount;
         this.price = price;
-        this.photo = photo;
+    }
+    public Product(int id,String name, Long amount, Long price, String image) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+        this.price = price;
+        this.image = image;
     }
 
     public int getId() {
@@ -87,12 +96,13 @@ public class Product {
         isDelete = delete;
     }
 
-    public String getPhoto() {
-        return photo;
+
+    public String getImage() {
+        return image;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<Item> getItems() {

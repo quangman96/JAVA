@@ -56,8 +56,7 @@
                                     <td th:text="${product.brand.name}"></td>
                                     <td th:text="${product.amount}"></td>
                                     <td th:text="${product.price}"></td>
-                                    <td><img width="150px" height="150px" th:src="@{'/images/'+${product.photo}}"></td>
-
+                                    <td><img width="150px" height="150px" th:src="'/images/' + ${product.image}"></td>
                                     <td><a th:href="@{/edit-product/__${product.id}__ }">Edit</a></td>
                                     <td><a th:href="@{/delete-product/__${product.id}__ }">Delete</a></td>
                                 </tr>

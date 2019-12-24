@@ -1,34 +1,51 @@
 package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Brand;
-import com.codegym.cms.model.Photo;
 import com.codegym.cms.model.Product;
+import com.codegym.cms.model.ProductUpload;
 import com.codegym.cms.service.BrandService;
 import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        Object target = dataBinder.getTarget();
+        if(target == null) {
+            return;
+        }
+        if(target.getClass() == Product.class){
+            dataBinder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
+        }
+    }
     @Autowired
     private BrandService brandService;
-    private static String UPDATE_LOCATION  = "D:\\Bootcamp-JAVA-Backend\\JavaSpringMVC\\Spring-Shopping\\src\\main\\webapp\\images\\";
 
     @ModelAttribute("brands")
     public Iterable<Brand> brands(){
         return brandService.findAll();
     }
+
     @GetMapping("/list-product")
     public ModelAndView productList(){
         Iterable<Product> products = productService.findAll();
@@ -37,44 +54,60 @@ public class ProductController {
         modelAndView.addObject("products",products);
         return modelAndView;
     }
+
     @GetMapping("/create-product")
-    public ModelAndView showCreateForm() {
+    public ModelAndView showCreateForm(@ModelAttribute("productUpload") ProductUpload productUpload) {
         ModelAndView modelAndView = new ModelAndView("/product/create");
+        modelAndView.addObject("productUpload", new ProductUpload());
         modelAndView.addObject("product", new Product());
-//        modelAndView.addObject("photo",new Photo());
         return modelAndView;
     }
-//    @PostMapping("/create-product")
-//    public ModelAndView saveProduct(@ModelAttribute("product") Product product){
-//        productService.save(product);
-//        ModelAndView modelAndView = new ModelAndView("/product/create");
-//        modelAndView.addObject("product", new Product());
-//        modelAndView.addObject("message","New Product Was Created");
-//        return modelAndView;
-//    }
-@PostMapping("/create-product")
-public ModelAndView addProduct(@ModelAttribute("photo") Photo photo, BindingResult bindingResult) {
-    ModelAndView modelAndView = new ModelAndView("/product/create");
-    if (bindingResult.hasErrors()) {
-        System.out.println("Result Error Occured" + bindingResult.getAllErrors());
-        modelAndView.addObject("message", "404");
-    }
-    //lay ten file
-    MultipartFile multipartFile = photo.getFile();
-    String fileName = multipartFile.getOriginalFilename();
-    //lu tru file len sever
 
-    try {
+    @PostMapping("/create-product")
+    public ModelAndView addProduct(HttpServletRequest request, @ModelAttribute("productUpload") ProductUpload productUpload) {
+        ModelAndView modelAndView = new ModelAndView("/product/create");
+//        if (result.hasErrors()){
+//            System.out.println("Result Error Occured" + result.getAllErrors());
+//            modelAndView.addObject("message", "404");
+//        }
 
-        FileCopyUtils.copy(photo.getFile().getBytes(), new File(UPDATE_LOCATION + fileName));
-        Product product = new Product(photo.getId(), photo.getName(), photo.getAmount(),photo.getPrice(),fileName);
+        Product product = new Product();
+        product.setName(productUpload.getName());
+        product.setAmount(productUpload.getAmount());
+        product.setBrand(productUpload.getBrand());
+        product.setPrice(productUpload.getPrice());
+        product.setImage(productUpload.getImage());
         productService.save(product);
-        modelAndView.addObject("message", "OK");
-    } catch (IOException e) {
-        e.printStackTrace();
+
+        String uploadRootPath = request.getServletContext().getRealPath("/images");
+        File uploadRootDir = new File(uploadRootPath);
+        if(!uploadRootDir.exists()){
+            uploadRootDir.mkdirs();
+        }
+        CommonsMultipartFile[] fileDatas = productUpload.getFileDatas();
+        Map<File,String> uploadFile = new HashMap<>();
+        for (CommonsMultipartFile fileData : fileDatas) {
+            String name = fileData.getOriginalFilename();
+            if( name != null && name.length()>0) {
+                try {
+                    File serverFile = new File(uploadRootDir.getAbsolutePath()+File.separator+ name);
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                    stream.write(fileData.getBytes());
+                    stream.close();
+                    uploadFile.put(serverFile,name);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        modelAndView.addObject("productUpload", new ProductUpload());
+        modelAndView.addObject("message","New Product Was Created");
+        return modelAndView;
     }
-    return modelAndView;
-}
+
     @GetMapping("/edit-product/{id}")
     public ModelAndView showEditForm(@PathVariable int id) {
         Product product = productService.findById(id);
@@ -87,6 +120,7 @@ public ModelAndView addProduct(@ModelAttribute("photo") Photo photo, BindingResu
             return modelAndView;
         }
     }
+
     @PostMapping("/edit-product")
     public ModelAndView updateProduct(@ModelAttribute("product")Product product){
         product.getId();
@@ -96,6 +130,7 @@ public ModelAndView addProduct(@ModelAttribute("photo") Photo photo, BindingResu
         modelAndView.addObject("message","Product Was Updated");
         return  modelAndView;
     }
+
     @GetMapping("/delete-product/{id}")
     public ModelAndView showDeleteForm(@PathVariable int id) {
         Product product = productService.findById(id);
@@ -114,5 +149,4 @@ public ModelAndView addProduct(@ModelAttribute("photo") Photo photo, BindingResu
         productService.remove(product.getId());
         return "redirect:list-product";
     }
-
 }

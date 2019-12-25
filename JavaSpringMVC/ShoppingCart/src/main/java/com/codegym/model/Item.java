@@ -1,6 +1,6 @@
 package com.codegym.model;
 
-public class    Item {
+public class Item {
 
     private Product product;
     private int quantity;

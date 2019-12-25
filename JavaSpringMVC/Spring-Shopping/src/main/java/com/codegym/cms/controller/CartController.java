@@ -2,7 +2,9 @@ package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Item;
 import com.codegym.cms.model.Product;
+import com.codegym.cms.service.ProductService;
 import com.codegym.cms.service.impl.ProductServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,8 @@ public class CartController {
         return "/cart/cart";
     }
 
-    private ProductServiceImpl productServiceImpl = new ProductServiceImpl();
+    @Autowired
+    private ProductService productService;
 
     @ModelAttribute("cart")
     public List<Item> getCart() {
@@ -38,10 +41,10 @@ public class CartController {
     public String buyCart(@PathVariable int id, HttpSession session, Model model) {
         Item item;
         List<Item> cart;
-        double total = 0;
+        long total = 0;
         if (session.getAttribute("cart") == null ) {
             cart = new ArrayList<>();
-            Product product = productServiceImpl.findById(id);
+            Product product = productService.findById(id);
             item = new Item(product,1);
             cart.add(item);
             session.setAttribute("cart",cart);
@@ -50,7 +53,7 @@ public class CartController {
             cart = (List<Item>) session.getAttribute("cart");
             int index = this.isExisting(id,cart);
             if (index == -1) {
-                Product product = productServiceImpl.findById(id);
+                Product product = productService.findById(id);
                 item = new Item(product,1);
                 cart.add(item);
             } else {

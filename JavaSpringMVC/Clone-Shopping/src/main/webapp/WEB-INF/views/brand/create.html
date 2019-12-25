@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout/tables::head">
+</head>
+
+<body id="page-top">
+<div th:replace="/layout/tables::navbar">
+</div>
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/layout/tables::sidebar">
+    </div>
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <div th:replace="/layout/tables::breadcrumb">
+            </div>
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <!--                    <i class="fas fa-table"></i>-->
+                    <a href="/create-product">Create new Product</a><br>
+                    <a href="/create-brand">Create new Brand</a></div>
+
+                <p><h1>CREATE PRODUCTS</h1></p>
+                <th:block th:if="${message}">
+                    <p th:text="${message}"></p>
+                </th:block>
+                <form th:action="@{/create-brand}" th:object="${brand}" method="post">
+                    <table>
+                        <tr>
+                            <td> Name Brand:</td>
+                            <td><input class="form-control form-control-lg" type="text" placeholder="Input provinces name"  th:field="*{name}"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input class="btn btn-secondary" type="submit" value="Create Brand"></td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+            <p class="small text-center text-muted my-5">
+                <em>More table examples coming soon...</em>
+            </p>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+
+        <div th:replace="/layout/tables::footer">
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<div th:replace="/layout/tables::scroll">
+</div>
+<!-- Logout Modal-->
+<div th:replace="/layout/tables::logout">
+</div>
+<!-- Bootstrap core JavaScript-->
+<div th:replace="/layout/tables::js">
+</div>
+
+</body>
+
+</html>
+
+

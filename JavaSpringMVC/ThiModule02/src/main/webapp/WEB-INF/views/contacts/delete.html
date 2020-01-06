@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete contact</title>
+</head>
+<body>
+<h1>Delete contact</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/contacts">Contacts list</a>
+</p>
+<form th:action="@{/delete-contact}" th:object="${contacts}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td th:text="${contacts.firstName}"></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text="${contacts.lastName}"></td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td th:text="${contacts.phoneNumber}"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${contacts.email}"></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td th:text="${contacts.address}"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete contact"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

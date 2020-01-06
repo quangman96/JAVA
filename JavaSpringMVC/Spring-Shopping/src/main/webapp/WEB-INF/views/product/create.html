@@ -23,14 +23,14 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <!--                    <i class="fas fa-table"></i>-->
-                    <a href="/create-product">Create new Product</a><br>
-                    <a href="/create-brand">Create new Brand</a></div>
+                    <a href="/admin/create-product">Create new Product</a><br>
+                    <a href="/admin/create-brand">Create new Brand</a></div>
 
                 <p><h1>CREATE PRODUCTS</h1></p>
                 <th:block th:if="${message}">
                     <p th:text="${message}"></p>
                 </th:block>
-                <form th:action="@{/create-product}" th:object="${productUpload}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/admin/create-product}" th:object="${productUpload}" method="post" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td> Name Product:</td>
@@ -101,7 +101,6 @@
         var i = s.split('\\').pop().split('/').pop();
         $('#image').val(i);
     }
-
 
 </script>
 

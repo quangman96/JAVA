@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit brand</title>
+</head>
+<body>
+<h1>Edit brand</h1>
+<p>
+    <a href="/">Product list</a>
+    <a href="/list-brand">Brand list</a>
+
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-brand}" th:object="${brand}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update brand"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

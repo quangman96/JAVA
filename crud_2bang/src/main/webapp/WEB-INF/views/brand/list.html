@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brands</title>
+</head>
+<body>
+<tr>
+    <th><a href="/create-brand">Create new brand</a></th>
+    <th><a href="/">Return product list</a></th>
+</tr>
+    <h1>Brands</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="brand : ${brands}">
+        <tr>
+            <td><a th:href="@{/view-brand/__${brand.id}__ }" th:text="${brand.name}"></a></td>
+            <td><a th:href="@{/edit-brand/__${brand.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-brand/__${brand.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

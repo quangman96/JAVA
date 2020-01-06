@@ -23,8 +23,8 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <!--                    <i class="fas fa-table"></i>-->
-                    <a href="/create-product">Create new Product</a><br>
-                    <a href="/create-brand">Create new Brand</a></div>
+                    <a href="/admin/create-product">Create new Product</a><br>
+                    <a href="/admin/create-brand">Create new Brand</a></div>
 
                 <p>
                 <h1>Delete Brand</h1>
@@ -32,7 +32,7 @@
                 <p>
                     <a href="/list-product">Product list</a>
                 </p>
-                <form th:action="@{/delete-brand}" th:object="${brand}" method="post">
+                <form th:action="@{/admin/delete-brand}" th:object="${brand}" method="post">
                     <input th:type="hidden" name="id" th:field="*{id}">
                     <table>
                         <tr>

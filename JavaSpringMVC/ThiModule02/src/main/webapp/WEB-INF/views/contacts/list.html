@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+</head>
+<body>
+<a href="/create-contact">Create new Contact</a>
+<h1>Contacts</h1>
+<form>
+    Search by First name:
+    <input name="f" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<form>
+    Search by last name:
+    <input name="l" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<form>
+    Search by First name or last name:
+    <input name="fol" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<table border="1">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="contact : ${contactsList}">
+        <tr>
+            <td><span th:text="${contact.firstName}"></span></td>
+            <td><span th:text="${contact.lastName}"></span></td>
+            <td><span th:text="${contact.phoneNumber}"></span></td>
+            <td><span th:text="${contact.email}"></span></td>
+            <td><span th:text="${contact.address}"></span></td>
+            <td><a th:href="@{/edit-contact/__${contact.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-contact/__${contact.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

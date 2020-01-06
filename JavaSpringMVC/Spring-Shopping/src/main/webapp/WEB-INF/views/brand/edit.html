@@ -23,14 +23,14 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <!--                    <i class="fas fa-table"></i>-->
-                    <a href="/create-product">Create new Product</a><br>
-                    <a href="/create-brand">Create new Brand</a></div>
+                    <a href="/admin/create-product">Create new Product</a><br>
+                    <a href="/admin/create-brand">Create new Brand</a></div>
 
                 <p><h1>EDIT BRAND</h1></p>
                 <th:block th:if="${message}">
                     <p th:text="${message}"></p>
                 </th:block>
-                <form th:action="@{/edit-brand}" th:object="${brand}" method="post">
+                <form th:action="@{/admin/edit-brand}" th:object="${brand}" method="post">
                     <input th:type="hidden" name="id" th:field="*{id}">
                     <table>
                         <tr>

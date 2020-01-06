@@ -2,7 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="588fc234-ade5-4a88-bc55-7fb63348ffd9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../JavaSpringDataBase/jpa-basic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaSpringDataBase/jpa-basic/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Clone-Shopping/src/main/java/com/codegym/cms/model/ItemDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Spring-Shopping/src/main/webapp/WEB-INF/views/layout/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/5.2.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/build/tmp/war/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/src/main/java/com/codegym/cms/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../crud_2bang/src/main/java/com/codegym/cms/ApplicationInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Clone-Shopping/src/main/java/com/codegym/cms/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Clone-Shopping/src/main/java/com/codegym/cms/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Clone-Shopping/src/main/java/com/codegym/cms/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Clone-Shopping/src/main/java/com/codegym/cms/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/src/main/java/com/codegym/cms/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/src/main/java/com/codegym/cms/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/src/main/java/com/codegym/cms/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/src/main/java/com/codegym/cms/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Shopping/src/main/webapp/WEB-INF/views/product/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Shopping/src/main/webapp/WEB-INF/views/product/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/build/classes/java/main/com/codegym/cms/ApplicationConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/build/classes/java/main/com/codegym/cms/ApplicationConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/build/classes/java/main/com/codegym/cms/formatter/ProvinceFormatter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/build/libs/Spring-crud-customer-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/build/libs/Spring-crud-customer-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/src/main/java/com/codegym/cms/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-crud-customer/src/main/java/com/codegym/cms/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-crud-customer/src/main/java/com/codegym/cms/formatter/ProvinceFormatter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../JavaWebBasic/inventory-management" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +115,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../crud" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -96,6 +149,7 @@
       <updated>1575616587092</updated>
       <workItem from="1575616591372" duration="5498000" />
       <workItem from="1576022104801" duration="7000" />
+      <workItem from="1577366232336" duration="30000" />
     </task>
     <servers />
   </component>
@@ -107,10 +161,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="261" y="4" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1575621074687" />
-    <state x="499" y="126" key="FileChooserDialogImpl" timestamp="1575623679143">
+    <state x="499" y="126" key="FileChooserDialogImpl" timestamp="1577366259385">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="499" y="126" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1575623679143" />
+    <state x="499" y="126" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1577366259385" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1575617434321">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

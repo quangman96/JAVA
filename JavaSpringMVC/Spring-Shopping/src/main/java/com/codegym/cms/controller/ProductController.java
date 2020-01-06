@@ -8,6 +8,7 @@ import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/admin")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -122,7 +124,7 @@ public class ProductController {
     }
 
     @PostMapping("/edit-product")
-    public ModelAndView updateProduct(@ModelAttribute("product")Product product){
+    public ModelAndView updateProduct(@Validated @ModelAttribute("product")Product product){
         product.getId();
         productService.save(product);
         ModelAndView modelAndView = new ModelAndView("/product/edit");
@@ -146,7 +148,7 @@ public class ProductController {
     }
     @PostMapping("/delete-product")
     public String deleteProduct(@ModelAttribute("product") Product product){
-        productService.remove(product.getId());
+        productService.sortDelete(product.getId());
         return "redirect:list-product";
     }
 }

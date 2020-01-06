@@ -1,9 +1,8 @@
 package com.codegym.cms.model;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 @Table(name = "products")
@@ -29,9 +28,11 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Item> items;
+//    @OneToMany(mappedBy = "product")
+//    private Set<Item> items;
 
+    @ManyToMany(mappedBy = "products")
+    private Collection<Item> items;
     public Product(){}
 
     public Product(int id,String name, Long amount, Long price) {
@@ -105,11 +106,11 @@ public class Product {
         this.image = image;
     }
 
-    public Set<Item> getItems() {
+    public Collection<Item> getItems() {
         return items;
     }
 
-    public void setItems(Set<Item> items) {
+    public void setItems(Collection<Item> items) {
         this.items = items;
     }
 }

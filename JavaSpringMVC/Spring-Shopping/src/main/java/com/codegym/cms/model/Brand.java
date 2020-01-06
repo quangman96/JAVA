@@ -1,6 +1,7 @@
 package com.codegym.cms.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -10,8 +11,11 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "Không được để trống")
     private String name;
-    private boolean isDelete;
+
+    private int isDelete;
 
     @OneToMany(targetEntity = Product.class)
     private Set<Product> products;
@@ -47,11 +51,11 @@ public class Brand {
         this.products = products;
     }
 
-    public boolean isDelete() {
+    public int getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }

@@ -5,15 +5,26 @@ import com.codegym.cms.model.Product;
 import com.codegym.cms.repository.ProductRepository;
 import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 
 public class ProductServiceImpl implements ProductService {
+    @PersistenceContext
+    EntityManager em;
+
     @Autowired
     private ProductRepository productRepository;
+
     @Override
+    @Transactional
     public Iterable<Product> findAll() {
-        return productRepository.findAll();
+        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.isDelete = 0",
+                Product.class);
+        return query.getResultList();
     }
 
     @Override
@@ -22,13 +33,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Iterable<Product> findAllByBrand_Id(int id) {
+        return productRepository.findAllByBrand_Id(id);
+    }
+
+    @Override
     public void save(Product product) {
         productRepository.save(product);
     }
 
     @Override
-    public void remove(int id) {
-        productRepository.deleteById(id);
+    public void sortDelete(int id) {
+        productRepository.sortDelete(id);
     }
 
     @Override
@@ -36,8 +52,4 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByBrand(brand);
     }
 
-    @Override
-    public Page<Product> findAllByNameContaining(String name, Pageable pageable) {
-        return productRepository.findAllByNameContaining(name,pageable);
-    }
 }

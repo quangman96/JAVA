@@ -9,7 +9,6 @@ public interface BrandService {
 
     void save(Brand brand);
 
-    void remove(int id);
+    void sortDelete(int id);
 
-//    void deleteAllByBrand_Id(Long id);
 }

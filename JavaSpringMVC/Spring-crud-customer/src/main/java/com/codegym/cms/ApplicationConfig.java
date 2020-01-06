@@ -1,11 +1,8 @@
 package com.codegym.cms;
 
-//import com.codegym.cms.formatter.ProvinceFormatter.ProvinceFormatter;
-import com.codegym.cms.formatter.ProvinceFormatter;
+
 import com.codegym.cms.service.CustomerService;
-//import com.codegym.cms.service.CustomerServiceImpl;
 import com.codegym.cms.service.ProvinceService;
-//import com.codegym.cms.service.ProvinceServiceImpl;
 import com.codegym.cms.service.impl.CustomerServiceImpl;
 import com.codegym.cms.service.impl.ProvinceServiceImpl;
 import org.springframework.beans.BeansException;
@@ -67,10 +64,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
     public ProvinceService provinceService(){
         return new ProvinceServiceImpl();
     }
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new ProvinceFormatter(applicationContext.getBean(ProvinceService.class)));
-    }
+
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
@@ -109,7 +103,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }

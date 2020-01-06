@@ -1,6 +1,5 @@
 package com.codegym.cms;
 
-import com.codegym.cms.formatter.BrandFormatter;
 import com.codegym.cms.service.BrandService;
 import com.codegym.cms.service.ProductService;
 import com.codegym.cms.service.impl.BrandServiceImpl;
@@ -14,12 +13,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -65,10 +65,6 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
         return new BrandServiceImpl();
     }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new BrandFormatter(applicationContext.getBean(BrandService.class)));
-    }
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
@@ -144,11 +140,17 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
                 .addResourceHandler("/images/**")
                 .addResourceLocations("/images/").resourceChain(false);
     }
+
     @Bean(name="multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxUploadSizePerFile(5242880);
         return resolver;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 //    @Bean

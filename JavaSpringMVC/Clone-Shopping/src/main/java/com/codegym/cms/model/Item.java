@@ -1,6 +1,7 @@
 package com.codegym.cms.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "items")
@@ -8,24 +9,28 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+    @ManyToMany
+    @JoinTable(name = "item_product",
+        joinColumns = @JoinColumn(name = "item_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Collection<Product> products;
     private int quantity;
 
     public Item() {}
 
-    public Item(Product product, int quantity) {
-        this.product = product;
+    public Item(Collection<Product> products, int quantity) {
+        this.products = products;
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public Collection<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
     }
 
     public int getQuantity() {

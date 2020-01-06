@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/layout/tables::head">
 </head>
@@ -23,8 +23,17 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <!--                    <i class="fas fa-table"></i>-->
-                    <a href="/create-product">Create new Product</a><br>
-                    <a href="/create-brand">Create new Brand</a></div>
+                    <a href="/admin/create-product">Create new Product</a><br>
+                    <a href="/admin/create-brand">Create new Brand</a></div>
+                <div sec:authorize="isAuthenticated()">
+                    <b>Welcome!
+                        <div sec:authentication="principal.username"/>
+                    </b>
+                </div>
+                <br/>
+                <div sec:authorize="isAuthenticated()">
+                    <a th:href="@{/}">Home</a> | <a th:href="@{/logout}">Logout</a>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -60,8 +69,8 @@
                                     <td th:text="${product.price}"></td>
                                     <td><img width="150px" height="150px" th:src="'/images/' + ${product.image}"></td>
                                     <td><a th:href="@{/cart/buy/__${product.id}__}">Buy</a></td>
-                                    <td><a th:href="@{/edit-product/__${product.id}__ }">Edit</a></td>
-                                    <td><a th:href="@{/delete-product/__${product.id}__ }">Delete</a></td>
+                                    <td><a th:href="@{/admin/edit-product/__${product.id}__ }">Edit</a></td>
+                                    <td><a th:href="@{/admin/delete-product/__${product.id}__ }">Delete</a></td>
                                 </tr>
                             </th:block>
                         </table>

@@ -23,8 +23,8 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <!--                    <i class="fas fa-table"></i>-->
-                    <a href="/create-product">Create new Product</a><br>
-                    <a href="/create-brand">Create new Brand</a></div>
+                    <a href="/admin/create-product">Create new Product</a><br>
+                    <a href="/admin/create-brand">Create new Brand</a></div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -46,8 +46,8 @@
                                 <tr>
                                     <td th:text="${brand.name}"></td>
 
-                                    <td><a th:href="@{/edit-brand/__${brand.id}__ }">Edit</a></td>
-                                    <td><a th:href="@{/delete-brand/__${brand.id}__ }">Delete</a></td>
+                                    <td><a th:href="@{/admin/edit-brand/__${brand.id}__ }">Edit</a></td>
+                                    <td><a th:href="@{/admin/delete-brand/__${brand.id}__ }">Delete</a></td>
                                 </tr>
                             </th:block>
                         </table>

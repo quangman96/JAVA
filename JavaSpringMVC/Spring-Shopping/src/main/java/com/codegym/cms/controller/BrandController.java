@@ -6,13 +6,12 @@ import com.codegym.cms.service.BrandService;
 import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/admin")
 public class BrandController {
 @Autowired
     private BrandService brandService;
@@ -33,7 +32,7 @@ public class BrandController {
     }
 
     @PostMapping("/create-brand")
-    public ModelAndView saveProvince(@ModelAttribute("province") Brand brand){
+    public ModelAndView saveProvince(@Validated @ModelAttribute("province") Brand brand){
         brandService.save(brand);
 
         ModelAndView modelAndView = new ModelAndView("/brand/create");
@@ -57,7 +56,7 @@ public class BrandController {
     }
 
     @PostMapping("/edit-brand")
-    public ModelAndView updateProvince(@ModelAttribute("brand") Brand brand){
+    public ModelAndView updateProvince(@Validated @ModelAttribute("brand") Brand brand){
         brandService.save(brand);
         ModelAndView modelAndView = new ModelAndView("/brand/edit");
         modelAndView.addObject("brand", brand);
@@ -81,7 +80,7 @@ public class BrandController {
 
     @PostMapping("/delete-brand")
     public String deleteProvince(@ModelAttribute("brand") Brand brand){
-        brandService.remove(brand.getId());
+        brandService.sortDelete(brand.getId());
         return "redirect:list-brand";
     }
     @GetMapping("/view-brand/{id}")

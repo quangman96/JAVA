@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create brand</title>
+</head>
+<body>
+<h1>Create brand</h1>
+<p>
+    <a href="/">Product list</a>
+    <a href="/list-brand">Brand list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-brand}" th:object="${brand}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create brand"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

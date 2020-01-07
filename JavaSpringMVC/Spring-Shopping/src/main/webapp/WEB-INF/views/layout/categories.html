@@ -31,19 +31,21 @@
 
 			<div class="home">
 				<div class="home_container">
-					<div class="home_background" style="background-image:url(/images/2.jpg)"></div>
-					<div class="home_content_container">
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<div class="home_content">
-										<div class="home_title">Apple Phones<span>.</span></div>
-										<div class="home_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</p></div>
+					<th:block th:each="p : ${products}">
+						<div class="home_background" th:style="'background-image:url(/images/' + ${p.brand.name} + '.jpg)'"></div>
+						<div class="home_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_content">
+											<div class="home_title" th:text="${p.brand.name}"><span>.</span></div>
+											<div class="home_text"><p th:text="${p.brand.description}"></p></div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</th:block>
 				</div>
 			</div>
 

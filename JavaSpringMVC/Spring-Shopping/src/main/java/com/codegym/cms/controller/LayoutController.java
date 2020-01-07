@@ -23,8 +23,10 @@ public class LayoutController {
     public ModelAndView showAllProductByBrand(@PathVariable int id){
     Iterable<Product> products = productService.findAllByBrand_Id(id);
         if(products != null) {
+            String imageUrl = "/images/"+ id+".jpg";
             ModelAndView modelAndView = new ModelAndView("/layout/categories");
             modelAndView.addObject("products",products);
+            modelAndView.addObject("urlImage",imageUrl);
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("/layout/error.404");

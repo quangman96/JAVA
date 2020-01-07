@@ -14,7 +14,7 @@ public class Brand {
 
     @NotEmpty(message = "Không được để trống")
     private String name;
-
+    private String description;
     private int isDelete;
 
     @OneToMany(targetEntity = Product.class)
@@ -57,5 +57,13 @@ public class Brand {
 
     public void setIsDelete(int isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

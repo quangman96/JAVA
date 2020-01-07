@@ -1,9 +1,11 @@
 package com.codegym.cms.controller;
 
 import com.codegym.cms.model.Brand;
+import com.codegym.cms.model.Category;
 import com.codegym.cms.model.Product;
 import com.codegym.cms.model.ProductUpload;
 import com.codegym.cms.service.BrandService;
+import com.codegym.cms.service.CategoryService;
 import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,10 +45,16 @@ public class ProductController {
     @Autowired
     private BrandService brandService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @ModelAttribute("brands")
     public Iterable<Brand> brands(){
         return brandService.findAll();
     }
+
+    @ModelAttribute("categories")
+    public Iterable<Category> categories() { return categoryService.findAll(); }
 
     @GetMapping("/list-product")
     public ModelAndView productList(){
@@ -77,6 +85,7 @@ public class ProductController {
         product.setName(productUpload.getName());
         product.setAmount(productUpload.getAmount());
         product.setBrand(productUpload.getBrand());
+        product.setCategory(productUpload.getCategory());
         product.setPrice(productUpload.getPrice());
         product.setImage(productUpload.getImage());
         productService.save(product);
@@ -141,14 +150,14 @@ public class ProductController {
             modelAndView.addObject("product", product);
             return modelAndView;
 
-        }else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/layout/404");
             return modelAndView;
         }
     }
     @PostMapping("/delete-product")
     public String deleteProduct(@ModelAttribute("product") Product product){
         productService.sortDelete(product.getId());
-        return "redirect:list-product";
+        return "redirect:/admin/list-product";
     }
 }

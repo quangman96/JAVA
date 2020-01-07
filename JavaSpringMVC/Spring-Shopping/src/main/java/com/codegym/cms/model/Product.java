@@ -1,11 +1,13 @@
 package com.codegym.cms.model;
 
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "products")
 public class Product {
 
@@ -20,10 +22,13 @@ public class Product {
 
     private Long price;
 
-    private boolean isDelete;
+    private int isDelete;
 
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
@@ -33,20 +38,6 @@ public class Product {
     private Set<Item> items;
 
     public Product(){}
-
-    public Product(int id,String name, Long amount, Long price) {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
-        this.price = price;
-    }
-    public Product(int id,String name, Long amount, Long price, String image) {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
-        this.price = price;
-        this.image = image;
-    }
 
     public int getId() {
         return id;
@@ -88,14 +79,13 @@ public class Product {
         this.brand = brand;
     }
 
-    public boolean isDelete() {
+    public int getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
-
 
     public String getImage() {
         return image;
@@ -111,5 +101,13 @@ public class Product {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -30,7 +30,7 @@
                 <h1>Delete Brand</h1>
                 <h2>Are you sure?</h2>
                 <p>
-                    <a href="/list-product">Product list</a>
+                    <a href="/admin/list-product">Product list</a>
                 </p>
                 <form th:action="@{/admin/delete-brand}" th:object="${brand}" method="post">
                     <input th:type="hidden" name="id" th:field="*{id}">

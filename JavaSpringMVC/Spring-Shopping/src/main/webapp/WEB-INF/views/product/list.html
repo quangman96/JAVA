@@ -41,6 +41,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Brand</th>
+                                <th>Category</th>
                                 <th>Amount</th>
                                 <th>Price</th>
                                 <th>Photo</th>
@@ -53,6 +54,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Brand</th>
+                                <th>Category</th>
                                 <th>Amount</th>
                                 <th>Price</th>
                                 <th>Photo</th>
@@ -65,6 +67,7 @@
                                 <tr>
                                     <td th:text="${product.name}"></td>
                                     <td th:text="${product.brand.name}"></td>
+                                    <td th:text="${product.category.name}"></td>
                                     <td th:text="${product.amount}"></td>
                                     <td th:text="${product.price}"></td>
                                     <td><img width="150px" height="150px" th:src="'/images/' + ${product.image}"></td>

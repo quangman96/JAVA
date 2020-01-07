@@ -1,6 +1,7 @@
 package com.codegym.cms.service.impl;
 
 import com.codegym.cms.model.Brand;
+import com.codegym.cms.model.Category;
 import com.codegym.cms.model.Product;
 import com.codegym.cms.repository.ProductRepository;
 import com.codegym.cms.service.ProductService;
@@ -38,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Iterable<Product> findAllByCategory_Id(int id) {
+        return productRepository.findAllByCategory_Id(id);
+    }
+
+    @Override
     public void save(Product product) {
         productRepository.save(product);
     }
@@ -52,4 +58,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllByBrand(brand);
     }
 
+    @Override
+    public Iterable<Product> findAllByCategory(Category category) { return productRepository.findAllByCategory(category);}
 }

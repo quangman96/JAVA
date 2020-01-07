@@ -53,6 +53,14 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Category:</td>
+                            <td>
+                                <select class="browser-default custom-select" th:field="*{category.id}">
+                                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <td> Images:</td>
                             <td>
                                 <input type="text" th:field="*{image}">

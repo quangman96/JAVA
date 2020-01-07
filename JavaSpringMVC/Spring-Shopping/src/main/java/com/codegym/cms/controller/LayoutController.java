@@ -12,24 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/brands")
 public class LayoutController {
     @Autowired
     private ProductService productService;
     @Autowired
     private BrandService brandService;
 
-    @GetMapping("/{id}")
-    public ModelAndView showAllProductByBrand(@PathVariable int id){
-    Iterable<Product> products = productService.findAllByBrand_Id(id);
-        if(products != null) {
-            String imageUrl = "/images/"+ id+".jpg";
-            ModelAndView modelAndView = new ModelAndView("/layout/categories");
-            modelAndView.addObject("products",products);
-            modelAndView.addObject("urlImage",imageUrl);
+    @GetMapping("/brands/{id}")
+    public ModelAndView showAllProductByBrand(@PathVariable int id) {
+        Iterable<Product> products = productService.findAllByBrand_Id(id);
+        if (products != null) {
+            ModelAndView modelAndView = new ModelAndView("/layout/brands");
+            modelAndView.addObject("products", products);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = new ModelAndView("/layout/error.404");
+            ModelAndView modelAndView = new ModelAndView("/layout/404");
+            return modelAndView;
+        }
+    }
+
+    @GetMapping("/category/{id}")
+    public ModelAndView showAllProductByCategory(@PathVariable int id) {
+        Iterable<Product> products = productService.findAllByCategory_Id(id);
+        if (products != null) {
+            ModelAndView modelAndView = new ModelAndView("/layout/categories");
+            modelAndView.addObject("products",products);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView  = new ModelAndView("/layout/404");
             return modelAndView;
         }
     }

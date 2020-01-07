@@ -1,7 +1,6 @@
 package com.codegym.cms.repository;
 
 import com.codegym.cms.model.Brand;
-import com.codegym.cms.model.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,5 +13,4 @@ public interface BrandRepository extends PagingAndSortingRepository<Brand,Intege
     @Modifying
     @Query("UPDATE Brand b SET b.isDelete = 1 WHERE b.id= :id")
     void sortDelete(@Param("id") int id);
-
 }

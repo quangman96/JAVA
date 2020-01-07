@@ -1,8 +1,10 @@
 package com.codegym.cms;
 
 import com.codegym.cms.service.BrandService;
+import com.codegym.cms.service.CategoryService;
 import com.codegym.cms.service.ProductService;
 import com.codegym.cms.service.impl.BrandServiceImpl;
+import com.codegym.cms.service.impl.CategoryServiceImpl;
 import com.codegym.cms.service.impl.ProductServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -64,7 +66,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter
     public BrandService brandService(){
         return new BrandServiceImpl();
     }
-
+    @Bean
+    public CategoryService categoryService(){
+        return new CategoryServiceImpl();
+    }
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {

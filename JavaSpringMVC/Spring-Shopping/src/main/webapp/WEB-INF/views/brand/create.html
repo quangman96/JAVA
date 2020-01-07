@@ -26,7 +26,7 @@
                     <a href="/admin/create-product">Create new Product</a><br>
                     <a href="/admin/create-brand">Create new Brand</a></div>
 
-                <p><h1>CREATE PRODUCTS</h1></p>
+                <p><h1>CREATE BRAND</h1></p>
                 <th:block th:if="${message}">
                     <p th:text="${message}"></p>
                 </th:block>
@@ -35,10 +35,6 @@
                         <tr>
                             <td> Name Brand:</td>
                             <td><input class="form-control form-control-lg" type="text" placeholder="Input provinces name"  th:field="*{name}"/></td>
-                        </tr>
-                        <tr>
-                            <td> Description :</td>
-                            <td><input class="form-control form-control-lg" type="text" placeholder="Input provinces name"  th:field="*{description}"/></td>
                         </tr>
                         <tr>
                             <td></td>

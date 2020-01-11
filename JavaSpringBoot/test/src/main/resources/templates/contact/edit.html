@@ -1,0 +1,142 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Edit contact</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Edit contact</h1>-->
+<!--<p>-->
+<!--    <a href="/">contact list</a>-->
+
+
+<!--</p>-->
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}"></p>-->
+<!--</th:block>-->
+<!--<form th:action="@{/edit-contact}" th:object="${contact}" method="post">-->
+<!--    <input th:type="hidden" name="id" th:field="*{id}">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>First Name:</td>-->
+<!--            <td><input type="text" th:field="*{firstName}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Last Name:</td>-->
+<!--            <td><input type="text" th:field="*{lastName}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Phone:</td>-->
+<!--            <td><input type="text" th:field="*{phone}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Email:</td>-->
+<!--            <td><input type="email" th:field="*{email}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Address:</td>-->
+<!--            <td><input type="text" th:field="*{address}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td><input type="submit" value="Update product"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout/tables::head">
+</head>
+
+<body id="page-top">
+<div th:replace="/layout/tables::navbar">
+</div>
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/layout/tables::sidebar">
+    </div>
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <div th:replace="/layout/tables::breadcrumb">
+            </div>
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <!--                    <i class="fas fa-table"></i>-->
+                    <a href="/create-product">Create new Contact</a><br>
+
+                <p><h1>EDIT CONTACTS</h1></p>
+                <th:block th:if="${message}">
+                    <p th:text="${message}"></p>
+                </th:block>
+                <form th:action="@{/edit-contact}" th:object="${contact}" method="post">
+                    <input th:type="hidden" name="id" th:field="*{id}">
+                    <table>
+                        <tr>
+                            <td> First Name:</td>
+                            <td><input class="form-control form-control-lg" type="text" placeholder="Input first name"  th:field="*{firstName}"/></td>
+                        </tr>
+                        <tr>
+                            <td> Last Name:</td>
+                            <td><input class="form-control form-control-lg" type="text" placeholder="Input last name"  th:field="*{lastName}"/></td>
+                        </tr>
+                        <tr>
+                            <td> Phone:</td>
+                            <td><input class="form-control form-control-lg" type="number" placeholder="Input phone number"  th:field="*{phone}"/></td>
+                        </tr>
+                        <tr>
+                            <td> Email:</td>
+                            <td><input class="form-control form-control-lg" type="email" placeholder="Input email"  th:field="*{email}"/></td>
+                        </tr>
+                        <tr>
+                            <td> Address:</td>
+                            <td><input class="form-control form-control-lg" type="text" placeholder="Input address"  th:field="*{address}"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input class="btn btn-secondary" type="submit" value="Edit Contact"></td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+            <p class="small text-center text-muted my-5">
+                <em>More table examples coming soon...</em>
+            </p>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+
+        <div th:replace="/layout/tables::footer">
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<div th:replace="/layout/tables::scroll">
+</div>
+<!-- Logout Modal-->
+<div th:replace="/layout/tables::logout">
+</div>
+<!-- Bootstrap core JavaScript-->
+<div th:replace="/layout/tables::js">
+</div>
+
+</body>
+
+</html>
+
+

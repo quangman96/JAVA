@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>QM Phone</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Sublime project">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/styles/bootstrap4/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/plugins/OwlCarousel2-2.2.1/animate.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/styles/categories.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/source/styles/categories_responsive.css}">
+	</head>
+
+	<body>
+
+		<div class="super_container">
+
+			<!-- Header -->
+
+			<div th:replace="/layout/index::header"></div>
+
+			<!-- Menu -->
+
+			<div th:replace="/layout/index::menu"></div>
+
+			<!-- Home -->
+
+			<div class="home">
+				<div class="home_container">
+					<th:block th:each="p : ${products}">
+						<div class="home_background" th:style="'background-image:url(/images/' + ${p.brand.name} + '.jpg)'"></div>
+						<div class="home_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_content">
+											<div class="home_title" th:text="${p.brand.name}"><span>.</span></div>
+											<div class="home_text"><p th:text="${p.brand.description}"></p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</th:block>
+				</div>
+			</div>
+
+			<!-- Products -->
+
+			<div class="products">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+
+							<!-- Product Sorting -->
+							<div class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
+								<div class="results">Showing <span>12</span> results</div>
+								<div class="sorting_container ml-md-auto">
+									<div class="sorting">
+										<ul class="item_sorting">
+											<li>
+												<span class="sorting_text">Sort by</span>
+												<i class="fa fa-chevron-down" aria-hidden="true"></i>
+												<ul>
+													<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default</span></li>
+													<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+													<li class="product_sorting_btn" data-isotope-option='{ "sortBy": "stars" }'><span>Name</span></li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+
+							<div class="product_grid">
+
+								<!-- Product -->
+								<th:block th:each="product: ${products}">
+									<div class="product">
+										<div class="product_image">
+											<img th:src="'/images/'+*{product.image}" alt="">
+										</div>
+										<div class="product_content">
+											<div class="product_title"><a th:href="'/product/'+*{product.id}" th:text="*{product.name}"></a></div>
+											<div class="product_price" th:text="*{product.price}"></div>
+										</div>
+									</div>
+								</th:block>
+
+							</div>
+							<div class="product_pagination">
+								<ul>
+									<li class="active"><a href="#">01.</a></li>
+									<li><a href="#">02.</a></li>
+									<li><a href="#">03.</a></li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Icon Boxes -->
+
+			<div th:replace="/layout/index::boxes"></div>
+
+			<!-- Newsletter -->
+
+			<div th:replace="/layout/index::letter"></div>
+
+			<!-- Footer -->
+
+			<div th:replace="/layout/index::footer"></div>
+		</div>
+
+		<script th:src="@{/source/js/jquery-3.2.1.min.js}"></script>
+		<script th:src="@{/source/styles/bootstrap4/popper.js}"></script>
+		<script th:src="@{/source/styles/bootstrap4/bootstrap.min.js}"></script>
+		<script th:src="@{/source/plugins/greensock/TweenMax.min.js}"></script>
+		<script th:src="@{/source/plugins/greensock/TimelineMax.min.js}"></script>
+		<script th:src="@{/source/plugins/scrollmagic/ScrollMagic.min.js}"></script>
+		<script th:src="@{/source/plugins/greensock/animation.gsap.min.js}"></script>
+		<script th:src="@{/source/plugins/greensock/ScrollToPlugin.min.js}"></script>
+		<script th:src="@{/source/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+		<script th:src="@{/source/plugins/Isotope/isotope.pkgd.min.js}"></script>
+		<script th:src="@{/source/plugins/easing/easing.js}"></script>
+		<script th:src="@{/source/plugins/parallax-js-master/parallax.min.js}"></script>
+		<script th:src="@{/source/js/custom.js}"></script>
+
+	</body>
+</html>

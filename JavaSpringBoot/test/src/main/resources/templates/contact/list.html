@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout/tables::head">
+</head>
+
+<body id="page-top">
+<div th:replace="/layout/tables::navbar">
+</div>
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/layout/tables::sidebar">
+    </div>
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <div th:replace="/layout/tables::breadcrumb">
+            </div>
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <!--                    <i class="fas fa-table"></i>-->
+                    <a href="/create-contact">Create new Contact</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </tfoot>
+                            <th:block th:each="contact : ${contacts}">
+                                <tr>
+                                    <td th:text="${contact.firstName}"></td>
+                                    <td th:text="${contact.lastName}"></td>
+                                    <td th:text="${contact.phone}"></td>
+                                    <td th:text="${contact.email}"></td>
+                                    <td th:text="${contact.address}"></td>
+                                    <td><a th:href="@{/edit-contact/__${contact.id}__ }">Edit</a></td>
+                                    <td><a th:href="@{/delete-contact/__${contact.id}__ }">Delete</a></td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">Welcome to my website.</div>
+            </div>
+
+            <p class="small text-center text-muted my-5">
+                <em>More table examples coming soon...</em>
+            </p>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+
+        <div th:replace="/layout/tables::footer">
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<div th:replace="/layout/tables::scroll">
+</div>
+<!-- Logout Modal-->
+<div th:replace="/layout/tables::logout">
+</div>
+<!-- Bootstrap core JavaScript-->
+<div th:replace="/layout/tables::js">
+</div>
+</body>
+
+</html>

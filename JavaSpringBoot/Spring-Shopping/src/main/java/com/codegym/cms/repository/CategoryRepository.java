@@ -8,11 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
-public interface CategoryRepository extends PagingAndSortingRepository<Category, Integer> {
+public interface CategoryRepository extends PagingAndSortingRepository<Category, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Category c SET c.isDelete = 1 WHERE c.id= :id")
-    void sortDelete(@Param("id") int id);
+    void sortDelete(@Param("id") Long id);
 
     Iterable<Category> findAllByIsDelete(Integer isDelete);
 }

@@ -46,7 +46,7 @@ public class BrandController {
     }
 
     @GetMapping("/edit-brand/{id}")
-    public ModelAndView showEditForm(@PathVariable int id) {
+    public ModelAndView showEditForm(@PathVariable Long id) {
         Brand brand = brandService.findById(id);
         if (brand != null) {
             ModelAndView modelAndView = new ModelAndView("/brand/edit");
@@ -69,7 +69,7 @@ public class BrandController {
     }
 
     @GetMapping("/delete-brand/{id}")
-    public ModelAndView showDeleteForm(@PathVariable int id) {
+    public ModelAndView showDeleteForm(@PathVariable Long id) {
         Brand brand = brandService.findById(id);
         if (brand != null) {
             ModelAndView modelAndView = new ModelAndView("/brand/delete");
@@ -90,7 +90,7 @@ public class BrandController {
 
 
     @GetMapping("/view-brand/{id}")
-    public ModelAndView viewBrand(@PathVariable("id") int id) {
+    public ModelAndView viewBrand(@PathVariable("id") Long id) {
         Brand brand = brandService.findById(id);
         if (brand == null) {
             return new ModelAndView("/layout/404");

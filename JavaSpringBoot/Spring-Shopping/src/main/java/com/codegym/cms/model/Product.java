@@ -8,9 +8,8 @@ import java.util.Set;
 public class Product {
 
     @Id
-//    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -22,7 +21,19 @@ public class Product {
 
     private String image;
 
+    private String image2;
+
+    private String image3;
+
+    private String image4;
+
+    private String image5;
+
     private String comment;
+
+    private Long quantity;
+
+    private Long star;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -35,13 +46,14 @@ public class Product {
     @OneToMany(targetEntity = Item.class)
     private Set<Item> items;
 
-    public Product(){}
+    public Product() {
+    }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -115,5 +127,53 @@ public class Product {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getImage2() {
+        return image2;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
+
+    public String getImage3() {
+        return image3;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public String getImage4() {
+        return image4;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public String getImage5() {
+        return image5;
+    }
+
+    public void setImage5(String image5) {
+        this.image5 = image5;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Long getStar() {
+        return star;
+    }
+
+    public void setStar(Long star) {
+        this.star = star;
     }
 }

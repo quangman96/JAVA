@@ -8,19 +8,21 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private int isDelete;
 
     @OneToMany(targetEntity = Product.class)
     private Set<Product> products;
 
-    public Category(){}
-    public int getId() {
+    public Category() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

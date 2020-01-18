@@ -33,17 +33,30 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findById(int id) {
+    @Transactional
+    public Iterable<Product> findStar() {
+        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.star = 1",
+                Product.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Iterable<Product> findAllByCategoryAndBrand(Long id1, Long id2) {
+        return productRepository.findAllByCategoryAndBrand(id1, id2);
+    }
+
+    @Override
+    public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Iterable<Product> findAllByBrand_Id(int id) {
+    public Iterable<Product> findAllByBrand_Id(Long id) {
         return productRepository.findAllByBrand_Id(id);
     }
 
     @Override
-    public Iterable<Product> findAllByCategory_Id(int id) {
+    public Iterable<Product> findAllByCategory_Id(Long id) {
         return productRepository.findAllByCategory_Id(id);
     }
 
@@ -53,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void sortDelete(int id) {
+    public void sortDelete(Long id) {
         productRepository.sortDelete(id);
     }
 
@@ -63,10 +76,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Iterable<Product> findAllByCategory(Category category) { return productRepository.findAllByCategory(category);}
+    public Iterable<Product> findAllByCategory(Category category) {
+        return productRepository.findAllByCategory(category);
+    }
 
     @Override
     public void upLoadFile(MultipartFile file) throws IOException {
-        file.transferTo(new File("D:\\Bootcamp-JAVA-Backend\\JavaSpringBoot\\Spring-Shopping\\src\\main\\resources\\static\\images\\"+ file.getOriginalFilename()));
+        file.transferTo(new File("D:\\Bootcamp-JAVA-Backend\\JavaSpringBoot\\Spring-Shopping\\src\\main\\resources\\static\\images\\" + file.getOriginalFilename()));
     }
 }

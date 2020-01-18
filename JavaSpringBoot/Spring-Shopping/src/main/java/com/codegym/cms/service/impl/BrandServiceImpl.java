@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 @Repository
 public class BrandServiceImpl implements BrandService {
     @PersistenceContext
@@ -24,15 +25,17 @@ public class BrandServiceImpl implements BrandService {
                 Brand.class);
         return query.getResultList();
     }
-    public Brand findById(int id) {
+
+    public Brand findById(Long id) {
         return brandRepository.findById(id).orElse(null);
     }
-    public void save(Brand brand){
+
+    public void save(Brand brand) {
         brandRepository.save(brand);
     }
 
     @Override
-    public void sortDelete(int id) {
+    public void sortDelete(Long id) {
         brandRepository.sortDelete(id);
     }
 

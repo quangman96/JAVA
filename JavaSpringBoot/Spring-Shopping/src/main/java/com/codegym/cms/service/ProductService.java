@@ -12,20 +12,24 @@ import java.io.IOException;
 public interface ProductService {
     Iterable<Product> findAll();
 
-    Iterable<Product> findAllByBrand_Id(int id);
+    Iterable<Product> findAllByBrand_Id(Long id);
 
-    Iterable<Product> findAllByCategory_Id(int id);
+    Iterable<Product> findAllByCategory_Id(Long id);
 
-    Product findById(int id);
+    Product findById(Long id);
 
     void save(Product product);
 
-    void sortDelete(int id);
+    void sortDelete(Long id);
 
     Iterable<Product> findAllByBrand(Brand brand);
 
     Iterable<Product> findAllByCategory(Category category);
 
     void upLoadFile(MultipartFile file) throws IOException;
+
+    Iterable<Product> findStar();
+
+    Iterable<Product> findAllByCategoryAndBrand(Long id1, Long id2);
 
 }

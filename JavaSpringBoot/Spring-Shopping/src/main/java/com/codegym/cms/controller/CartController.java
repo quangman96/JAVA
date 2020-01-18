@@ -1,5 +1,6 @@
 package com.codegym.cms.controller;
 
+import com.codegym.cms.model.Cart;
 import com.codegym.cms.model.Item;
 import com.codegym.cms.model.Product;
 import com.codegym.cms.service.ProductService;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @ComponentScan("com.codegym.cms")
 @Controller
+@SessionAttributes("cart")
 @RequestMapping(value = "cart")
 public class CartController {
 
@@ -28,80 +30,78 @@ public class CartController {
     private ProductService productService;
 
     @ModelAttribute("cart")
-    public List<Item> getCart() {
-        List<Item> items = new ArrayList<>();
-        return items;
+    private Cart setCart() {
+        return new Cart();
     }
+
 
     @GetMapping("/cart")
-    public ModelAndView showCart(@ModelAttribute("cart") List<Item> cart, Model model) {
-        ModelAndView modelAndView = new ModelAndView("/layout/cart");
-        modelAndView.addObject("cart", cart);
-        return modelAndView;
-    }
-
-    @GetMapping("/cart1")
-    public ModelAndView showCart1(@ModelAttribute("cart") List<Item> cart) {
-        ModelAndView modelAndView = new ModelAndView("/cart/cart");
-        modelAndView.addObject("cart", cart);
+    public ModelAndView cart(@ModelAttribute("cart") Cart cart) {
+        int total = 0;
+        ModelAndView modelAndView = new ModelAndView("layout/cart", "cart", cart);
+        for (Item p : cart.getItems()) {
+            total += p.getPrice() * p.getQuantity();
+        }
+        modelAndView.addObject("total", total);
         return modelAndView;
     }
 
 
     @GetMapping("/buy/{id}")
-    public String buyCart(@PathVariable int id, HttpSession session, Model model) {
-        Item item;
-        List<Item> cart;
-        long total = 0;
-        if (session.getAttribute("cart") == null) {
-            cart = new ArrayList<>();
-            Product product = productService.findById(id);
-            item = new Item(product, 1);
-            cart.add(item);
-            session.setAttribute("cart", cart);
-            total = product.getPrice();
-        } else {
-            cart = (List<Item>) session.getAttribute("cart");
-            int index = this.isExisting(id, cart);
-            if (index == -1) {
-                Product product = productService.findById(id);
-                item = new Item(product, 1);
-                cart.add(item);
-            } else {
-                int quantity = cart.get(index).getQuantity() + 1;
-                cart.get(index).setQuantity(quantity);
-            }
-            session.setAttribute("cart", cart);
-            for (int i = 0; i < cart.size(); i++) {
-                total += cart.get(i).getProduct().getPrice() * cart.get(i).getQuantity();
-            }
-        }
-        model.addAttribute("cart", cart);
-        model.addAttribute("total", total);
-        return "/layout/cart";
-    }
+    public String buyCart(@PathVariable Long id, @ModelAttribute("cart") Cart cart) {
+        String quantity = "1";
+        Product product = productService.findById(id);
 
-    private int isExisting(int id, List<Item> cart) {
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProduct().getId() == id) {
-                return i;
+        boolean check = true;
+        for (Item item : cart.getItems()) {
+            if (id.equals(item.getProduct().getId())) {
+                item.setQuantity(item.getQuantity() + Long.parseLong(quantity));
+                check = false;
             }
         }
-        return -1;
+
+        if (check) {
+            Item item = new Item();
+            item.setProduct(product);
+            item.setQuantity(Long.parseLong(quantity));
+            item.setPrice(product.getPrice());
+            List<Item> itemList = new ArrayList<>();
+            itemList = cart.getItems();
+            itemList.add(item);
+            cart.setItems(itemList);
+        }
+        return "redirect:/cart/cart";
     }
 
     @GetMapping("/remove/{id}")
-    public String removeCart(@PathVariable int id, HttpSession session, Model model) {
-        List<Item> cart = (List<Item>) session.getAttribute("cart");
-        int index = this.isExisting(id, cart);
-        cart.remove(index);
-        session.setAttribute("cart", cart);
-        double total = 0;
-        for (int i = 0; i < cart.size(); i++) {
-            total += cart.get(i).getProduct().getPrice() * cart.get(i).getQuantity();
+    public String removeCart(@PathVariable Long id, @ModelAttribute("cart") Cart cart) {
+        for (Item item : cart.getItems()) {
+            if (id.equals(item.getProduct().getId())) {
+//                item.g().remove(p);
+                break;
+            }
         }
-        model.addAttribute("cart", cart);
-        model.addAttribute("total", total);
-        return "/layout/cart";
+        return "redirect:/cart/cart";
+    }
+
+    @GetMapping("/quantity/{operator}/{id}")
+    public String quantity(@PathVariable String operator, @PathVariable Long id, @ModelAttribute("cart") Cart cart) {
+        int quantity = 1;
+
+        for (Item item : cart.getItems()) {
+            if (id.equals(item.getProduct().getId())) {
+                if (operator.equals("+")) {
+                    item.setQuantity(item.getQuantity() + quantity);
+                } else {
+                    if (item.getQuantity() != 1) {
+                        item.setQuantity(item.getQuantity() - quantity);
+                    } else {
+                        cart.getItems().remove(item);
+                        break;
+                    }
+                }
+            }
+        }
+        return "redirect:/cart/cart";
     }
 }

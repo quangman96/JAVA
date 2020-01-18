@@ -19,22 +19,24 @@ public class CategoryController {
     private CategoryService categoryService;
     @Autowired
     private ProductService productService;
+
     @GetMapping("/list-category")
-    public ModelAndView CategoryList(){
+    public ModelAndView CategoryList() {
         Iterable<Category> categories = categoryService.findAllByIsDelete(0);
         ModelAndView modelAndView = new ModelAndView("/category/list");
         modelAndView.addObject("categories", categories);
         return modelAndView;
     }
+
     @GetMapping("/create-category")
-    public ModelAndView showCreateForm(){
+    public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/category/create");
         modelAndView.addObject("category", new Category());
         return modelAndView;
     }
 
     @PostMapping("/create-category")
-    public ModelAndView saveProvince(@Validated @ModelAttribute("category") Category category){
+    public ModelAndView saveProvince(@Validated @ModelAttribute("category") Category category) {
         categoryService.save(category);
 
         ModelAndView modelAndView = new ModelAndView("/category/create");
@@ -44,21 +46,21 @@ public class CategoryController {
     }
 
     @GetMapping("/edit-category/{id}")
-    public ModelAndView showEditForm(@PathVariable int id){
+    public ModelAndView showEditForm(@PathVariable Long id) {
         Category category = categoryService.findById(id);
-        if(category != null) {
+        if (category != null) {
             ModelAndView modelAndView = new ModelAndView("/category/edit");
             modelAndView.addObject("category", category);
             return modelAndView;
 
-        }else {
-            ModelAndView modelAndView = new ModelAndView("/layout/error.404");
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/layout/404");
             return modelAndView;
         }
     }
 
     @PostMapping("/edit-category")
-    public ModelAndView updateCategory(@Validated @ModelAttribute("category") Category category){
+    public ModelAndView updateCategory(@Validated @ModelAttribute("category") Category category) {
         categoryService.save(category);
         ModelAndView modelAndView = new ModelAndView("/category/edit");
         modelAndView.addObject("category", category);
@@ -67,28 +69,29 @@ public class CategoryController {
     }
 
     @GetMapping("/delete-category/{id}")
-    public ModelAndView showDeleteForm(@PathVariable int id){
+    public ModelAndView showDeleteForm(@PathVariable Long id) {
         Category category = categoryService.findById(id);
-        if(category != null) {
+        if (category != null) {
             ModelAndView modelAndView = new ModelAndView("/category/delete");
             modelAndView.addObject("category", category);
             return modelAndView;
 
         } else {
-            ModelAndView modelAndView = new ModelAndView("/layout/error.404");
+            ModelAndView modelAndView = new ModelAndView("/layout/404");
             return modelAndView;
         }
     }
 
     @PostMapping("/delete-category")
-    public String deleteCategory(@ModelAttribute("category") Category category){
+    public String deleteCategory(@ModelAttribute("category") Category category) {
         categoryService.sortDelete(category.getId());
         return "redirect:admin/list-category";
     }
+
     @GetMapping("/view-category/{id}")
-    public ModelAndView viewCategory(@PathVariable("id") int id){
+    public ModelAndView viewCategory(@PathVariable("id") Long id) {
         Category category = categoryService.findById(id);
-        if(category == null){
+        if (category == null) {
             return new ModelAndView("/layout/error.404");
         }
 

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 public interface BrandService {
     Iterable<Brand> findAll();
 
-    Brand findById(int id);
+    Brand findById(Long id);
 
     void save(Brand brand);
 
-    void sortDelete(int id);
+    void sortDelete(Long id);
 
 }

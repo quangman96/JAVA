@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 public interface CategoryService {
     Iterable<Category> findAll();
 
-    Category findById(int id);
+    Category findById(Long id);
 
     void save(Category category);
 
-    void sortDelete(int id);
+    void sortDelete(Long id);
 
     Iterable<Category> findAllByIsDelete(Integer isDelete);
 

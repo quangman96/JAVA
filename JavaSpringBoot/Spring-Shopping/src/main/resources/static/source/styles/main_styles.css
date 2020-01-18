@@ -1053,7 +1053,7 @@ section
 {
 	max-width: 567px;
 	height: 100%;
-	background: rgba(0,0,0,0.63);
+	/*background: rgba(0,0,0,0.63);*/
 	padding-right: 130px;
 	padding-left: 30px;
 	padding-top: 51px;

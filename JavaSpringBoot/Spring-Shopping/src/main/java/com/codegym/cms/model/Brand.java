@@ -10,7 +10,7 @@ public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotEmpty(message = "Không được để trống")
     private String name;
@@ -23,15 +23,15 @@ public class Brand {
     public Brand() {
     }
 
-    public Brand(String name){
+    public Brand(String name) {
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

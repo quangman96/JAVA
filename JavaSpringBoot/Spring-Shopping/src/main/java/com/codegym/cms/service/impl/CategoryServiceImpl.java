@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 @Repository
 public class CategoryServiceImpl implements CategoryService {
     @PersistenceContext
@@ -22,15 +23,17 @@ public class CategoryServiceImpl implements CategoryService {
                 Category.class);
         return query.getResultList();
     }
-    public Category findById(int id) {
+
+    public Category findById(Long id) {
         return categoryRepository.findById(id).orElse(null);
     }
-    public void save(Category category){
+
+    public void save(Category category) {
         categoryRepository.save(category);
     }
 
     @Override
-    public void sortDelete(int id) {
+    public void sortDelete(Long id) {
         categoryRepository.sortDelete(id);
     }
 

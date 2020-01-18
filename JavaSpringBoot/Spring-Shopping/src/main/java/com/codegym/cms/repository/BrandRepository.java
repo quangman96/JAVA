@@ -8,9 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
-public interface BrandRepository extends PagingAndSortingRepository<Brand, Integer> {
+public interface BrandRepository extends PagingAndSortingRepository<Brand, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Brand b SET b.isDelete = 1 WHERE b.id= :id")
-    void sortDelete(@Param("id") int id);
+    void sortDelete(@Param("id") Long id);
 }

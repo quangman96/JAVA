@@ -45,7 +45,7 @@
                                 <th>Amount</th>
                                 <th>Price</th>
                                 <th>Photo</th>
-                                <th>Buy</th>
+                                <th>Description</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -58,7 +58,7 @@
                                 <th>Amount</th>
                                 <th>Price</th>
                                 <th>Photo</th>
-                                <th>Buy</th>
+                                <th>Description</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -71,7 +71,7 @@
                                     <td th:text="${product.amount}"></td>
                                     <td th:text="${product.price}"></td>
                                     <td><img width="150px" height="150px" th:src="'/images/' + ${product.image}"></td>
-                                    <td><a th:href="@{/cart/buy/__${product.id}__}">Buy</a></td>
+                                    <td th:text="${product.comment}"></td>
                                     <td><a th:href="@{/admin/edit-product/__${product.id}__ }">Edit</a></td>
                                     <td><a th:href="@{/admin/delete-product/__${product.id}__ }">Delete</a></td>
                                 </tr>

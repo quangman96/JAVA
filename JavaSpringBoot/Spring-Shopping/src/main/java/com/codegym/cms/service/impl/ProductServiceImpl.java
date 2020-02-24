@@ -82,6 +82,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void upLoadFile(MultipartFile file) throws IOException {
-        file.transferTo(new File("D:\\Bootcamp-JAVA-Backend\\JavaSpringBoot\\Spring-Shopping\\src\\main\\resources\\static\\images\\" + file.getOriginalFilename()));
+        file.transferTo(new File("D:\\Bootcamp-JAVA-Backend\\JavaSpringBoot\\Spring-Shopping\\src\\main\\resources\\static\\source\\images\\" + file.getOriginalFilename()));
     }
 }

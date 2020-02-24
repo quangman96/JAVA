@@ -68,5 +68,11 @@ public class LayoutController {
             return modelAndView;
         }
     }
+
+    @GetMapping("/contact")
+    public ModelAndView showContactForm() {
+        ModelAndView modelAndView = new ModelAndView("/layout/contact");
+        return modelAndView;
+    }
 }
 

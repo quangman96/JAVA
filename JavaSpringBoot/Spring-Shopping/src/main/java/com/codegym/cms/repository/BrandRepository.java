@@ -12,5 +12,5 @@ public interface BrandRepository extends PagingAndSortingRepository<Brand, Long>
     @Transactional
     @Modifying
     @Query("UPDATE Brand b SET b.isDelete = 1 WHERE b.id= :id")
-    void sortDelete(@Param("id") Long id);
+    void   sortDelete(@Param("id") Long id);
 }

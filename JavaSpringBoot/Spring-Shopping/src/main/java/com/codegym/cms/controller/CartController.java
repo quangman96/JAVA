@@ -1,8 +1,7 @@
 package com.codegym.cms.controller;
 
-import com.codegym.cms.model.Cart;
-import com.codegym.cms.model.Item;
-import com.codegym.cms.model.Product;
+import com.codegym.cms.model.*;
+import com.codegym.cms.service.BillService;
 import com.codegym.cms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @ComponentScan("com.codegym.cms")
@@ -28,6 +28,9 @@ public class CartController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BillService billService;
 
     @ModelAttribute("cart")
     private Cart setCart() {
@@ -73,6 +76,12 @@ public class CartController {
         return "redirect:/cart/cart";
     }
 
+    @GetMapping("/clear")
+    public String clearCart(@ModelAttribute("cart") Cart cart){
+        cart.getItems().clear();
+        return "redirect:/cart/cart";
+    }
+
     @GetMapping("/remove/{id}")
     public String removeCart(@PathVariable Long id, @ModelAttribute("cart") Cart cart) {
         for (Item item : cart.getItems()) {
@@ -104,4 +113,29 @@ public class CartController {
         }
         return "redirect:/cart/cart";
     }
+
+    @GetMapping("/checkout")
+    public ModelAndView checkOut(@ModelAttribute("cart")Cart cart){
+        int total = 0;
+        for (Item p : cart.getItems()) {
+            total += p.getPrice() * p.getQuantity();
+        }
+
+        ModelAndView modelAndView = new ModelAndView("/layout/checkout");
+        modelAndView.addObject("cart",cart);
+        modelAndView.addObject("bill", new Bill());
+        modelAndView.addObject("total",total);
+        return modelAndView;
+    }
+
+    @PostMapping("/checkout")
+    public ModelAndView buyAll(@ModelAttribute("bill") Bill bill){
+        billService.save(bill);
+
+        ModelAndView modelAndView = new ModelAndView("/layout/checkout");
+        modelAndView.addObject("bill", new Bill());
+
+        return modelAndView;
+    }
+
 }

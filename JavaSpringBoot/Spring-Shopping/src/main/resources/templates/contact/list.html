@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/layout/tables::head">
+</head>
+
+<body id="page-top">
+<div th:replace="/layout/tables::navbar">
+</div>
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/layout/tables::sidebar">
+    </div>
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <div th:replace="/layout/tables::breadcrumb">
+            </div>
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">Contact List</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Delete</th>
+                            </tr>
+                            </tfoot>
+                            <th:block th:each="contacts : ${contacts}">
+                                <tr>
+                                    <td th:text="${contacts.firstName}+${contacts.lastName}"></td>
+                                    <td th:text="${contacts.subject}"></td>
+                                    <td th:text="${contacts.message}"></td>
+                                    <td><a th:href="@{/admin/delete-contact/__${contacts.id}__ }">Delete</a></td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">Welcome to my website.</div>
+            </div>
+
+            <p class="small text-center text-muted my-5">
+                <em>Form Man with love...</em>
+            </p>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+
+        <div th:replace="/layout/tables::footer">
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<div th:replace="/layout/tables::scroll">
+</div>
+<!-- Logout Modal-->
+<div th:replace="/layout/tables::logout">
+</div>
+<!-- Bootstrap core JavaScript-->
+<div th:replace="/layout/tables::js">
+</div>
+</body>
+
+</html>

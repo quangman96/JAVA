@@ -40,7 +40,7 @@ public class ProductController {
     }
 
     @GetMapping("/list-abc")
-    public ResponseEntity<Iterable<Product>> productList() {
+    public ResponseEntity<Iterable<Product>> productListApi() {
         Iterable<Product> products = productService.findAll();
         if (products == null) {
             return new ResponseEntity<Iterable<Product>>(HttpStatus.NO_CONTENT);
@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     @GetMapping("/list-product")
-    public ModelAndView abc() {
+    public ModelAndView productList() {
         Iterable<Product> products = productService.findAll();
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products",products);
@@ -127,8 +127,11 @@ public class ProductController {
     }
 
     @PostMapping("/delete-product")
-    public String deleteProduct(@ModelAttribute("product") Product product) {
+    public ModelAndView deleteProduct(@ModelAttribute("product") Product product) {
         productService.sortDelete(product.getId());
-        return "redirect:/admin/list-product";
+        Iterable<Product> products = productService.findAll();
+        ModelAndView modelAndView = new ModelAndView("/product/list");
+        modelAndView.addObject("products",products);
+        return modelAndView;
     }
 }

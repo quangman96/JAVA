@@ -51,10 +51,10 @@
                                                     <a href="/products/2">TABLET</a>
                                                     <ul>
                                                         <li>
-                                                            <a href="/products/2/2">Apple IPad</a>
+                                                            <a href="/products/2/2">IPad</a>
                                                         </li>
                                                         <li>
-                                                            <a href="/products/2/1">Samsung Tab</a>
+                                                            <a href="/products/2/1">Tab</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -62,10 +62,10 @@
                                                     <a href="/products/3">WATCH</a>
                                                     <ul>
                                                         <li>
-                                                            <a href="/products/3/1">Apple Watch</a>
+                                                            <a href="/products/3/1">Samsung</a>
                                                         </li>
                                                         <li>
-                                                            <a href="/products/3/2">Samsung Watch</a>
+                                                            <a href="/products/3/2">Apple</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -323,7 +323,7 @@
                                                     <div class="home_slider_title">As long as you have a cell phone
                                                         you’re never alone..
                                                     </div>
-                                                    <div class="home_slider_subtitle">viet vai chu~</div>
+                                                    <div class="home_slider_subtitle">...</div>
                                                     <div class="button button_light home_button">
                                                         <a href="/products">Shop Now</a>
                                                     </div>
@@ -460,12 +460,10 @@
                                         <div class="product_image">
                                             <img th:src="'/images/'+*{p.image}" alt="">
                                         </div>
-                                        <div class="product_extra product_new">
-                                            <a href="categories.html">New</a>
-                                        </div>
+                                        <div class="product_extra product_new">New</div>
                                         <div class="product_content">
-                                            <div class="product_title" th:text="${p.name}">
-                                                <a href="product.html"></a>
+                                            <div class="product_title">
+                                                <a th:href="'/product/'+*{p.id}" th:text="*{p.name}"></a>
                                             </div>
                                             <div class="product_price" th:text="${p.price}"></div>
                                         </div>

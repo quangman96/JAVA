@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>District</title>
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/resource/css/bootstrap.css}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+
+</head>
+<body>
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-12 d-flex align-items-center">
+                <div class="services-wrap rounded-right w-100">
+                    <h3>Create District</h3>
+                    <th:block th:if="${message}">
+                        <div class="alert alert-success">
+                            <span th:text="${message}"></span>
+                        </div>
+                    </th:block>
+                    <a href="/admin">Admin list</a>
+                    <form th:action="@{/createDistrict}" th:object="${district}" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <label>Product Name:</label>
+                            <input type="text" class="form-control" th:field="*{nameDistrict}"/>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Province</label>
+                            <select class="form-control" th:field="*{province}">
+                                <th:block th:each="province1 : ${province}">
+                                    <option th:value="${province1.idProvince}" th:text="${province1.nameProvince}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+
+</html>

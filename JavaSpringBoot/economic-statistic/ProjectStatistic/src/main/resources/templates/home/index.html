@@ -1,0 +1,27 @@
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <tr>
+            <th>Name Product</th>
+            <th>Huyen</th>
+            <th>Nghanh</th>
+            <th>Solieu</th>
+            <th>Don vi</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <th:block th:each="product : ${products}">
+            <tr>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.priceSale}"></td>
+                <td th:text="${product.description}"></td>
+                <td><img width="220px" height="220px" th:src="'/images/' + ${product.image}"></td>
+                <td th:text="${product.status}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td><a th:href="@{/edit/__${product.id}__ }">Edit</a></td>
+                <td><a th:href="@{/delete/__${product.id}__ }">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>

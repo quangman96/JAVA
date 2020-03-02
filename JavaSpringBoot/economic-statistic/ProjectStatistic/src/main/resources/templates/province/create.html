@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Province</title>
+
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/resource/css/bootstrap.css}" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+
+</head>
+<body>
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-12 d-flex align-items-center">
+                <div class="services-wrap rounded-right w-100">
+                    <h1>Create Province</h1>
+                    <th:block th:if="${message}">
+                        <p th:text="${message}"></p>
+                    </th:block>
+                    <form th:action="@{/createProvince}" th:object="${province}" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label>Province Name:</label>
+                            <input type="text" class="form-control" th:field="*{nameProvince}"/>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+<script th:src="@{/resource/js/bootstrap.js}"></script>
+<script th:src="@{/resource/js/bootstrap.bundle.js}"></script>
+</html>
